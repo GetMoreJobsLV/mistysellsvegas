@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>The Complete Buyer's Guide — Misty Sumner</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #1B2A4A; --navy-l: #243560;
+  --gold: #C9A84C; --gold-l: #E8C97A;
+  --white: #FFFFFF; --off: #F7F4EF;
+  --gray: #888; --light: #EEEEEE; --dgray: #333;
+  --green: #2D6A4F; --teal: #1A6B72;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'DM Sans', sans-serif; background: var(--navy); min-height: 100vh; display: flex; justify-content: center; }
+.app { width: 100%; max-width: 480px; background: var(--off); }
+.gold-bar { height: 5px; background: linear-gradient(90deg, var(--gold), var(--gold-l)); }
+
+/* COVER */
+.cover { background: var(--navy); padding: 32px 24px 36px; position: relative; overflow: hidden; }
+.cover::before { content:''; position:absolute; top:-80px; right:-80px; width:240px; height:240px; border-radius:50%; background:rgba(201,168,76,0.06); }
+.cover::after  { content:''; position:absolute; bottom:-60px; left:-60px; width:180px; height:180px; border-radius:50%; background:rgba(201,168,76,0.04); }
+.agent-row { display:flex; align-items:center; gap:14px; margin-bottom:26px; position:relative; z-index:1; }
+.agent-photo { width:60px; height:60px; border-radius:50%; object-fit:cover; border:3px solid var(--gold); flex-shrink:0; }
+.agent-name { font-family:'Playfair Display',serif; color:var(--white); font-size:16px; font-weight:700; }
+.agent-creds { font-size:10px; color:rgba(255,255,255,0.45); margin-top:2px; }
+.agent-tag { font-size:11px; color:var(--gold); font-weight:600; margin-top:3px; }
+.kit-badge { display:inline-block; background:rgba(201,168,76,0.12); border:1px solid rgba(201,168,76,0.35); color:var(--gold); font-size:9px; font-weight:700; letter-spacing:2px; padding:4px 12px; border-radius:20px; margin-bottom:14px; position:relative; z-index:1; }
+.cover-title { font-family:'Playfair Display',serif; font-size:36px; font-weight:900; color:var(--white); line-height:1.1; margin-bottom:8px; position:relative; z-index:1; }
+.cover-title span { color:var(--gold); }
+.cover-sub { font-size:13px; color:rgba(255,255,255,0.6); line-height:1.6; margin-bottom:20px; position:relative; z-index:1; }
+.cover-checks { position:relative; z-index:1; }
+.cover-check { display:flex; align-items:flex-start; gap:10px; margin-bottom:10px; }
+.check-icon { width:20px; height:20px; border-radius:50%; background:rgba(201,168,76,0.2); border:1.5px solid var(--gold); display:flex; align-items:center; justify-content:center; flex-shrink:0; margin-top:1px; }
+.check-icon svg { width:10px; height:10px; fill:var(--gold); }
+.check-text { font-size:13px; color:rgba(255,255,255,0.8); line-height:1.4; }
+
+/* NAV */
+.toc { background: var(--navy-l); padding: 16px 20px; }
+.toc-title { font-size:10px; font-weight:700; color:var(--gold); text-transform:uppercase; letter-spacing:1.5px; margin-bottom:12px; }
+.toc-grid { display:grid; grid-template-columns:1fr 1fr; gap:6px; }
+.toc-item { background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.1); border-radius:8px; padding:8px 12px; cursor:pointer; transition:all 0.2s; }
+.toc-item:active { background:rgba(201,168,76,0.15); }
+.toc-num { font-size:9px; color:var(--gold); font-weight:700; }
+.toc-label { font-size:11px; color:var(--white); font-weight:500; margin-top:1px; }
+
+/* SECTIONS */
+.section { padding: 0; }
+.section-header { background:var(--navy); padding:20px 22px; }
+.section-tag { font-size:9px; font-weight:700; color:var(--gold); text-transform:uppercase; letter-spacing:1.5px; margin-bottom:8px; }
+.section-title { font-family:'Playfair Display',serif; font-size:24px; font-weight:700; color:var(--white); line-height:1.2; }
+.section-body { padding:20px 22px; }
+
+/* GUARANTEE CARD */
+.guarantee-card { background:var(--navy); border-radius:16px; padding:22px; margin-bottom:20px; position:relative; overflow:hidden; }
+.guarantee-card::before { content:''; position:absolute; top:-30px; right:-30px; width:100px; height:100px; border-radius:50%; background:rgba(201,168,76,0.08); }
+.guarantee-title { font-family:'Playfair Display',serif; font-size:20px; font-weight:700; color:var(--white); margin-bottom:4px; }
+.guarantee-sub { font-size:12px; color:var(--gold); font-weight:600; margin-bottom:12px; }
+.guarantee-text { font-size:13px; color:rgba(255,255,255,0.7); line-height:1.6; margin-bottom:16px; }
+.steps-2x2 { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+.step-card { background:rgba(255,255,255,0.07); border-radius:10px; padding:12px; }
+.step-num { font-size:9px; font-weight:700; color:var(--gold); text-transform:uppercase; letter-spacing:1px; margin-bottom:4px; }
+.step-title { font-size:12px; font-weight:700; color:var(--white); margin-bottom:4px; }
+.step-text { font-size:11px; color:rgba(255,255,255,0.65); line-height:1.4; }
+
+/* STEP TIMELINE */
+.timeline { }
+.timeline-item { display:flex; gap:14px; margin-bottom:18px; }
+.timeline-left { display:flex; flex-direction:column; align-items:center; }
+.timeline-num { width:36px; height:36px; border-radius:50%; background:var(--navy); border:2.5px solid var(--gold); display:flex; align-items:center; justify-content:center; font-family:'Playfair Display',serif; font-size:16px; font-weight:900; color:var(--gold); flex-shrink:0; }
+.timeline-line { width:2px; flex:1; background:var(--light); margin:4px 0; min-height:20px; }
+.timeline-right { flex:1; padding-top:6px; padding-bottom:10px; }
+.timeline-title { font-size:14px; font-weight:700; color:var(--navy); margin-bottom:6px; }
+.timeline-bullets { list-style:none; }
+.timeline-bullets li { font-size:12px; color:var(--dgray); line-height:1.5; padding:2px 0; padding-left:14px; position:relative; }
+.timeline-bullets li::before { content:'·'; position:absolute; left:0; color:var(--gold); font-weight:700; }
+
+/* TABLE */
+.data-table { width:100%; border-collapse:collapse; margin-bottom:16px; font-size:12px; }
+.data-table th { background:var(--navy); color:var(--white); padding:8px 10px; text-align:left; font-size:11px; font-weight:700; }
+.data-table td { padding:8px 10px; border-bottom:1px solid var(--light); color:var(--dgray); vertical-align:top; }
+.data-table tr:nth-child(even) td { background:rgba(238,238,238,0.4); }
+.data-table td:first-child { font-weight:600; color:var(--navy); }
+
+/* TIMELINE TABLE */
+.timeline-table { width:100%; border-collapse:collapse; margin-bottom:16px; }
+.timeline-table th { background:var(--navy); color:var(--gold); padding:8px 10px; font-size:11px; font-weight:700; text-align:left; }
+.timeline-table td { padding:8px 10px; border-bottom:1px solid var(--light); font-size:12px; color:var(--dgray); }
+.timeline-table td:first-child { font-weight:600; color:var(--navy); }
+
+/* INFO BLOCKS */
+.info-card { background:var(--white); border-radius:14px; padding:16px; margin-bottom:14px; box-shadow:0 2px 8px rgba(0,0,0,0.05); border-left:4px solid var(--gold); }
+.info-card.green { border-left-color:var(--green); }
+.info-card.teal  { border-left-color:var(--teal); }
+.info-card.navy  { border-left-color:var(--navy); }
+.info-card-title { font-size:13px; font-weight:700; color:var(--navy); margin-bottom:8px; }
+.info-card-text  { font-size:12px; color:var(--dgray); line-height:1.6; }
+
+/* BULLET LISTS */
+.bullet-list { list-style:none; margin-bottom:14px; }
+.bullet-list li { display:flex; gap:10px; margin-bottom:8px; font-size:13px; color:var(--dgray); line-height:1.5; }
+.bullet-list li::before { content:''; width:6px; height:6px; border-radius:50%; background:var(--gold); flex-shrink:0; margin-top:6px; }
+
+/* DONT LIST */
+.dont-item { display:flex; gap:12px; padding:12px 14px; background:var(--white); border-radius:12px; margin-bottom:8px; box-shadow:0 1px 4px rgba(0,0,0,0.05); border-left:3px solid #8B2020; }
+.dont-num { font-size:20px; font-weight:900; color:#8B2020; font-family:'Playfair Display',serif; flex-shrink:0; line-height:1; }
+.dont-content { flex:1; }
+.dont-title { font-size:13px; font-weight:700; color:var(--navy); margin-bottom:4px; }
+.dont-text { font-size:12px; color:var(--dgray); line-height:1.5; }
+
+/* DO ITEM */
+.do-item { display:flex; gap:12px; padding:12px 14px; background:var(--white); border-radius:12px; margin-bottom:8px; box-shadow:0 1px 4px rgba(0,0,0,0.05); border-left:3px solid var(--green); }
+.do-content { flex:1; }
+.do-title { font-size:13px; font-weight:700; color:var(--navy); margin-bottom:4px; }
+.do-text { font-size:12px; color:var(--dgray); line-height:1.5; }
+
+/* UTILITY TABLE */
+.util-row { display:flex; align-items:center; gap:10px; padding:10px 0; border-bottom:1px solid var(--light); }
+.util-icon { font-size:18px; width:28px; flex-shrink:0; }
+.util-info { flex:1; }
+.util-type { font-size:12px; font-weight:600; color:var(--navy); }
+.util-provider { font-size:11px; color:var(--gray); }
+.util-contact { font-size:11px; font-weight:600; color:var(--teal); text-align:right; white-space:nowrap; }
+
+/* ETHICS TABLE */
+.ethics-item { padding:12px 0; border-bottom:1px solid var(--light); }
+.ethics-title { font-size:13px; font-weight:700; color:var(--navy); margin-bottom:3px; }
+.ethics-text { font-size:12px; color:var(--dgray); line-height:1.5; }
+
+/* PRO TIP */
+.pro-tip { background:rgba(201,168,76,0.12); border:1px solid rgba(201,168,76,0.3); border-radius:12px; padding:14px; margin-bottom:16px; }
+.pro-tip-label { font-size:10px; font-weight:700; color:var(--gold); text-transform:uppercase; letter-spacing:1px; margin-bottom:6px; }
+.pro-tip-text { font-size:13px; color:var(--navy); line-height:1.5; font-weight:500; }
+
+/* SECTION DIVIDER */
+.section-divider { height:8px; background:var(--light); }
+
+/* CLOSING CTA */
+.cta-section { background:var(--navy); padding:28px 22px; text-align:center; }
+.cta-title { font-family:'Playfair Display',serif; font-size:22px; font-weight:700; color:var(--white); margin-bottom:8px; }
+.cta-sub { font-size:13px; color:rgba(255,255,255,0.65); margin-bottom:20px; line-height:1.6; }
+.cta-phone { display:flex; align-items:center; justify-content:center; gap:8px; background:var(--gold); color:var(--navy); text-decoration:none; border-radius:14px; padding:16px; font-size:15px; font-weight:700; margin-bottom:12px; }
+.social-row { display:flex; gap:10px; }
+.social-btn { flex:1; display:flex; align-items:center; justify-content:center; gap:6px; padding:11px; border-radius:12px; background:rgba(255,255,255,0.08); color:var(--white); text-decoration:none; font-size:12px; font-weight:600; border:1px solid rgba(255,255,255,0.12); }
+.social-ig { background:rgba(193,53,132,0.2); border-color:rgba(193,53,132,0.35); }
+
+.guarantee-badge { background:rgba(201,168,76,0.15); border:1px solid rgba(201,168,76,0.35); border-radius:12px; padding:14px 16px; margin-top:16px; font-size:12px; color:var(--gold); line-height:1.6; font-weight:500; }
+
+.legal-footer { padding:14px 22px; border-top:1px solid var(--light); text-align:center; background:var(--white); }
+.legal-text { font-size:9px; color:var(--gray); line-height:1.5; }
+
+h3 { font-size:15px; font-weight:700; color:var(--navy); margin:14px 0 8px; }
+p { font-size:13px; color:var(--dgray); line-height:1.6; margin-bottom:10px; }
+</style>
+</head>
+<body>
+<div class="app">
+<div class="gold-bar"></div>
+
+<!-- COVER -->
+<div class="cover">
+  <div class="agent-row">
+    <img src="data:image/jpeg;base64,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" alt="Misty Sumner" class="agent-photo">
+    <div>
+      <div class="agent-name">Misty Sumner</div>
+      <div class="agent-creds">Lic. S.0192497 · Roland Team / LPT Realty</div>
+      <div class="agent-tag">Las Vegas, NV · (702) 376-6297</div>
+    </div>
+  </div>
+  <div class="kit-badge">HOME BUYER'S UNFAIR ADVANTAGE KIT</div>
+  <div class="cover-title">The Complete<br><span>Buyer's Guide</span></div>
+  <div class="cover-sub">Everything you need to buy your dream home with confidence — from pre-approval to keys in hand.</div>
+  <div class="cover-checks">
+    <div class="cover-check"><div class="check-icon"><svg viewBox="0 0 12 9"><path d="M1 4.5L4.5 8L11 1"/><style>path{stroke:currentColor;stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round}</style></svg></div><div class="check-text">Understand every step before it happens</div></div>
+    <div class="cover-check"><div class="check-icon"><svg viewBox="0 0 12 9"><path d="M1 4.5L4.5 8L11 1"/><style>path{stroke:currentColor;stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round}</style></svg></div><div class="check-text">Avoid the 5 most costly first-time buyer mistakes</div></div>
+    <div class="cover-check"><div class="check-icon"><svg viewBox="0 0 12 9"><path d="M1 4.5L4.5 8L11 1"/><style>path{stroke:currentColor;stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round}</style></svg></div><div class="check-text">Know what to look for — and what to walk away from</div></div>
+    <div class="cover-check"><div class="check-icon"><svg viewBox="0 0 12 9"><path d="M1 4.5L4.5 8L11 1"/><style>path{stroke:currentColor;stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round}</style></svg></div><div class="check-text">Move from search to closing faster, with less stress</div></div>
+  </div>
+</div>
+
+<!-- TABLE OF CONTENTS -->
+<div class="toc">
+  <div class="toc-title">Contents</div>
+  <div class="toc-grid">
+    <div class="toc-item" onclick="document.getElementById('s-guarantee').scrollIntoView({behavior:'smooth'})"><div class="toc-num">01</div><div class="toc-label">Love It or Leave It</div></div>
+    <div class="toc-item" onclick="document.getElementById('s-process').scrollIntoView({behavior:'smooth'})"><div class="toc-num">02</div><div class="toc-label">The Buying Process</div></div>
+    <div class="toc-item" onclick="document.getElementById('s-preapproval').scrollIntoView({behavior:'smooth'})"><div class="toc-num">03</div><div class="toc-label">Getting Pre-Approved</div></div>
+    <div class="toc-item" onclick="document.getElementById('s-working').scrollIntoView({behavior:'smooth'})"><div class="toc-num">04</div><div class="toc-label">Working With Misty</div></div>
+    <div class="toc-item" onclick="document.getElementById('s-offer').scrollIntoView({behavior:'smooth'})"><div class="toc-num">05</div><div class="toc-label">Making an Offer</div></div>
+    <div class="toc-item" onclick="document.getElementById('s-inspection').scrollIntoView({behavior:'smooth'})"><div class="toc-num">06</div><div class="toc-label">Inspection Time</div></div>
+    <div class="toc-item" onclick="document.getElementById('s-title').scrollIntoView({behavior:'smooth'})"><div class="toc-num">07</div><div class="toc-label">Appraisal & Title</div></div>
+    <div class="toc-item" onclick="document.getElementById('s-moving').scrollIntoView({behavior:'smooth'})"><div class="toc-num">08</div><div class="toc-label">Moving & Closing</div></div>
+    <div class="toc-item" onclick="document.getElementById('s-utilities').scrollIntoView({behavior:'smooth'})"><div class="toc-num">09</div><div class="toc-label">Utility Providers</div></div>
+    <div class="toc-item" onclick="document.getElementById('s-mistakes').scrollIntoView({behavior:'smooth'})"><div class="toc-num">10</div><div class="toc-label">Common Mistakes</div></div>
+    <div class="toc-item" onclick="document.getElementById('s-ethics').scrollIntoView({behavior:'smooth'})"><div class="toc-num">11</div><div class="toc-label">Ethics & Commitment</div></div>
+    <div class="toc-item" onclick="document.getElementById('s-cta').scrollIntoView({behavior:'smooth'})"><div class="toc-num">12</div><div class="toc-label">Let's Get Started</div></div>
+  </div>
+</div>
+
+<div class="section-divider"></div>
+
+<!-- 01 GUARANTEE -->
+<div id="s-guarantee" class="section">
+  <div class="section-header">
+    <div class="section-tag">The Roland Team Exclusive Program</div>
+    <div class="section-title">Love It or Leave It</div>
+  </div>
+  <div class="section-body">
+    <div class="guarantee-card">
+      <div class="guarantee-title">Buy with Confidence.</div>
+      <div class="guarantee-sub">We Remove the Risk.</div>
+      <div class="guarantee-text">Most buyers are nervous about making the wrong decision — and that's completely normal. Real estate is one of the biggest financial decisions you'll ever make. That's why we created the Love It or Leave It guarantee: buy a home with our team, and within the first year, if it's not the right fit, we will list and sell your home for FREE.</div>
+      <div class="steps-2x2">
+        <div class="step-card"><div class="step-num">Step 01</div><div class="step-title">Buy Your Home</div><div class="step-text">Work with our team. Your guarantee activates automatically at closing.</div></div>
+        <div class="step-card"><div class="step-num">Step 02</div><div class="step-title">Love It (or Not)</div><div class="step-text">If within 12 months it's not the right fit — any reason — just reach out.</div></div>
+        <div class="step-card"><div class="step-num">Step 03</div><div class="step-title">We List for Free</div><div class="step-text">Full team. Full marketing. Zero listing commission. Photography to closing.</div></div>
+        <div class="step-card"><div class="step-num">Step 04</div><div class="step-title">Move Forward</div><div class="step-text">Walk away without regret and without losing a dime on commissions.</div></div>
+      </div>
+    </div>
+    <div class="info-card navy">
+      <div class="info-card-title">Program Requirements</div>
+      <ul class="bullet-list">
+        <li>You must list the property with Misty Sumner / The Roland Team</li>
+        <li>Owner-occupied properties only — investment homes do not qualify</li>
+        <li>The home must be priced in accordance with current market value</li>
+        <li>The property must be maintained in good condition throughout</li>
+      </ul>
+    </div>
+    <p>The biggest mistake buyers make is waiting for the "perfect" home because they fear making the wrong decision. That fear keeps people stuck for months or years. When you have a safety net, you move forward — and buyers who move forward almost always love the home they chose.</p>
+  </div>
+</div>
+
+<div class="section-divider"></div>
+
+<!-- 02 PROCESS -->
+<div id="s-process" class="section">
+  <div class="section-header">
+    <div class="section-tag">Step by Step</div>
+    <div class="section-title">The Home Buying Process</div>
+  </div>
+  <div class="section-body">
+    <p>Buying a home is a journey — and knowing each milestone makes the whole experience far less stressful. Here is exactly what to expect.</p>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-left"><div class="timeline-num">1</div><div class="timeline-line"></div></div>
+        <div class="timeline-right"><div class="timeline-title">Pre-Approval</div><ul class="timeline-bullets"><li>Speak with a trusted lender and gather your documents</li><li>Address any credit issues that may affect your rate</li><li>Determine the right loan type and mortgage for your situation</li><li>Receive your official pre-approval letter to shop with confidence</li></ul></div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-left"><div class="timeline-num">2</div><div class="timeline-line"></div></div>
+        <div class="timeline-right"><div class="timeline-title">Home Shopping</div><ul class="timeline-bullets"><li>Discuss your must-haves and deal-breakers with Misty</li><li>Tour listings in your price range and preferred areas</li><li>Take notes, photos, and videos at each home</li><li>Refine your criteria as you discover what matters most</li></ul></div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-left"><div class="timeline-num">3</div><div class="timeline-line"></div></div>
+        <div class="timeline-right"><div class="timeline-title">Offer &amp; Negotiation</div><ul class="timeline-bullets"><li>Research comparable sales with your agent to find fair value</li><li>Submit a strong, strategically structured offer</li><li>Negotiate terms, timelines, and contingencies</li><li>Sign the purchase agreement when terms are accepted</li></ul></div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-left"><div class="timeline-num">4</div><div class="timeline-line"></div></div>
+        <div class="timeline-right"><div class="timeline-title">Due Diligence</div><ul class="timeline-bullets"><li>Schedule a licensed home inspector immediately after acceptance</li><li>Order the appraisal and survey</li><li>Negotiate repairs or credits based on inspection findings</li><li>Begin title exam and finalize your loan</li></ul></div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-left"><div class="timeline-num">5</div><div class="timeline-line"></div></div>
+        <div class="timeline-right"><div class="timeline-title">Pre-Closing &amp; Title</div><ul class="timeline-bullets"><li>Confirm all agreed-upon repairs are complete</li><li>Conduct your final walk-through of the property</li><li>Wire closing funds to the title company</li><li>Review your closing disclosure carefully</li></ul></div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-left"><div class="timeline-num">6</div></div>
+        <div class="timeline-right"><div class="timeline-title">Closing Day 🎉</div><ul class="timeline-bullets"><li>Review and sign the closing statement</li><li>Sign all closing documents with the title company</li><li>Receive your keys — the home is yours!</li><li><strong>You are a homeowner!</strong></li></ul></div>
+      </div>
+    </div>
+    <h3>Typical Las Vegas Timeline</h3>
+    <table class="timeline-table">
+      <thead><tr><th>Phase</th><th>Typical Duration</th></tr></thead>
+      <tbody>
+        <tr><td>Pre-Approval</td><td>1–5 business days</td></tr>
+        <tr><td>Home Search</td><td>2–8 weeks</td></tr>
+        <tr><td>Offer to Acceptance</td><td>1–5 days</td></tr>
+        <tr><td>Inspection &amp; Due Diligence</td><td>7–14 days</td></tr>
+        <tr><td>Loan Processing &amp; Appraisal</td><td>2–3 weeks</td></tr>
+        <tr><td>Title &amp; Closing Prep</td><td>1–2 weeks</td></tr>
+        <tr><td><strong>Total: Offer to Close</strong></td><td><strong>30–45 days (typical)</strong></td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="section-divider"></div>
+
+<!-- 03 PRE-APPROVAL -->
+<div id="s-preapproval" class="section">
+  <div class="section-header">
+    <div class="section-tag">Step 1 Deep Dive</div>
+    <div class="section-title">Getting Pre-Approved</div>
+  </div>
+  <div class="section-body">
+    <p>Being pre-approved — unlike being pre-qualified — means a lender has actually reviewed your documented financial information and approved you for a specific loan amount. This is your first and most important step.</p>
+    <div class="steps-2x2" style="margin-bottom:16px">
+      <div class="step-card"><div class="step-title" style="color:var(--navy)">Know Your Budget</div><div class="step-text" style="color:var(--dgray)">Know exactly how much house you can afford and stop wasting time on homes outside your range.</div></div>
+      <div class="step-card"><div class="step-title" style="color:var(--navy)">Negotiating Power</div><div class="step-text" style="color:var(--dgray)">Sellers know you're serious. You gain a clear competitive advantage over unqualified buyers.</div></div>
+      <div class="step-card"><div class="step-title" style="color:var(--navy)">Close Faster</div><div class="step-text" style="color:var(--dgray)">Key financial checks are already done, shortening your closing timeline.</div></div>
+      <div class="step-card"><div class="step-title" style="color:var(--navy)">Beat Competition</div><div class="step-text" style="color:var(--dgray)">In fast-moving markets, pre-approved buyers win. Others lose deals waiting to qualify.</div></div>
+    </div>
+    <h3>Documents You'll Typically Need</h3>
+    <table class="data-table">
+      <thead><tr><th>Document</th><th>Why It's Needed</th></tr></thead>
+      <tbody>
+        <tr><td>2 years of W-2s or tax returns</td><td>Verifies income history</td></tr>
+        <tr><td>Recent pay stubs (30 days)</td><td>Confirms current employment</td></tr>
+        <tr><td>2 months of bank statements</td><td>Shows funds for down payment</td></tr>
+        <tr><td>Government-issued photo ID</td><td>Identity verification</td></tr>
+        <tr><td>Social Security number</td><td>Enables credit pull</td></tr>
+        <tr><td>Current debt obligations</td><td>Calculates debt-to-income ratio</td></tr>
+      </tbody>
+    </table>
+    <h3>What NOT to Do Before Closing</h3>
+    <div class="dont-item"><div class="dont-num">✕</div><div class="dont-content"><div class="dont-title">Make a Big Purchase</div><div class="dont-text">Avoid buying a car, furniture, or appliances until after closing. Large purchases change your debt-to-income ratio and can jeopardize your loan approval.</div></div></div>
+    <div class="dont-item"><div class="dont-num">✕</div><div class="dont-content"><div class="dont-title">Open New Credit</div><div class="dont-text">Do not open any new credit cards or take out any loan. New accounts lower your credit score and can trigger a full re-review of your file.</div></div></div>
+    <div class="dont-item"><div class="dont-num">✕</div><div class="dont-content"><div class="dont-title">Miss Any Payments</div><div class="dont-text">Pay every bill on time throughout the entire process. Even one missed payment can drop your score enough to affect your rate or kill your approval.</div></div></div>
+    <div class="dont-item"><div class="dont-num">✕</div><div class="dont-content"><div class="dont-title">Move Large Sums of Money</div><div class="dont-text">Avoid transferring large sums between accounts or making undocumented deposits. Both send red flags to your underwriter and delay closing.</div></div></div>
+    <div class="dont-item"><div class="dont-num">✕</div><div class="dont-content"><div class="dont-title">Change Jobs</div><div class="dont-text">Lenders verify employment right before closing. Avoid changing jobs, going self-employed, or altering your income structure during the loan process.</div></div></div>
+  </div>
+</div>
+
+<div class="section-divider"></div>
+
+<!-- 04 WORKING WITH MISTY -->
+<div id="s-working" class="section">
+  <div class="section-header">
+    <div class="section-tag">Your Dedicated Advocate</div>
+    <div class="section-title">Working With Misty</div>
+  </div>
+  <div class="section-body">
+    <p>Buying a home is one of the most significant purchases of your lifetime. A seller already has someone in their corner — the listing agent, whose sole goal is to get the top dollar for their home. You deserve the same.</p>
+    <div class="info-card green"><div class="info-card-title">Getting You in the Door</div><div class="info-card-text">We narrow down homes that fit your unique wants and needs and get you in the door fast. We review dozens of listings weekly and can identify potential problems before you fall in love with a home.</div></div>
+    <div class="info-card teal"><div class="info-card-title">Staying on Top of Paperwork</div><div class="info-card-text">Buying a home involves many types of documentation. We have the experience to navigate real estate contracts and ensure nothing is overlooked — and that you truly understand what every document means before you sign.</div></div>
+    <div class="info-card navy"><div class="info-card-title">On Your Side at Every Step</div><div class="info-card-text">With a pulse on the Las Vegas market and a sound understanding of how amenities and location affect value, we will make sure you submit a competitive offer on the right home — and never pay more than you should.</div></div>
+    <div class="info-card"><div class="info-card-title">Neighborhood Expert</div><div class="info-card-text">We work daily with inspectors, contractors, and sellers across every Las Vegas neighborhood. Understanding the local market is essential when making an offer — and we bring that knowledge directly to your decision.</div></div>
+    <div class="info-card"><div class="info-card-title">Problem Solver</div><div class="info-card-text">We protect all of your interests and take on any issues that arise throughout the entire process. Our goal is to make buying a home an exciting, stress-free experience from your first tour to the day you get your keys.</div></div>
+    <h3>Touring Checklist</h3>
+    <p>Use this checklist on every home you tour:</p>
+    <table class="data-table">
+      <thead><tr><th>What to Check</th></tr></thead>
+      <tbody>
+        <tr><td>Test the plumbing — run faucets, flush toilets, check water pressure</td></tr>
+        <tr><td>Test the electrical — flip every switch, check outlets per room</td></tr>
+        <tr><td>Open &amp; close all windows and doors — do they work properly?</td></tr>
+        <tr><td>Check the HVAC — turn on heating &amp; cooling, listen for sounds</td></tr>
+        <tr><td>Check under every sink for staining, soft wood, or moisture</td></tr>
+        <tr><td>Look at ceilings for water stains or discoloration</td></tr>
+        <tr><td>Are the surrounding homes well maintained?</td></tr>
+        <tr><td>How much traffic is on the street at different times of day?</td></tr>
+        <tr><td>Is it located near schools, shopping, restaurants &amp; parks?</td></tr>
+        <tr><td>Cell signal strength throughout the home?</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="section-divider"></div>
+
+<!-- 05 MAKING AN OFFER -->
+<div id="s-offer" class="section">
+  <div class="section-header">
+    <div class="section-tag">Step 3</div>
+    <div class="section-title">Making an Offer</div>
+  </div>
+  <div class="section-body">
+    <p>When we find a home you love, we will quickly and strategically place an offer. Several factors can make your offer more compelling than competing offers:</p>
+    <div class="do-item"><div class="do-content"><div class="do-title">Put In a Competitive Offer</div><div class="do-text">We decide on a price based on current market conditions, comparable properties recently sold nearby, the property's condition, and the level of buyer demand in that specific area.</div></div></div>
+    <div class="do-item"><div class="do-content"><div class="do-title">Pay in Cash vs. Loan</div><div class="do-text">Paying cash offers a faster closing timeline and fewer complications — making it far more appealing to sellers. If using financing, strong pre-approval is your next-best advantage.</div></div></div>
+    <div class="do-item"><div class="do-content"><div class="do-title">Put Down a Larger Deposit</div><div class="do-text">An offer with a larger earnest money deposit signals genuine commitment to the seller. It presents a more serious and competitive position than minimal deposits.</div></div></div>
+    <div class="do-item"><div class="do-content"><div class="do-title">Offer a Shorter Closing Timeline</div><div class="do-text">A shorter timeframe is generally more attractive to sellers who want certainty. A typical closing timeframe in Las Vegas is 30–45 days.</div></div></div>
+    <div class="do-item"><div class="do-content"><div class="do-title">Write a Personal Letter</div><div class="do-text">In competitive situations, a brief, sincere letter from you to the seller can create an emotional connection — and sometimes that's the deciding factor.</div></div></div>
+  </div>
+</div>
+
+<div class="section-divider"></div>
+
+<!-- 06 INSPECTION -->
+<div id="s-inspection" class="section">
+  <div class="section-header">
+    <div class="section-tag">Step 4</div>
+    <div class="section-title">Inspection Time</div>
+  </div>
+  <div class="section-body">
+    <p>During the inspection period, we will schedule a thorough investigation with a reputable licensed home inspector. This is one of the most important protections available to you as a buyer.</p>
+    <table class="data-table">
+      <thead><tr><th>Phase</th><th>What Gets Examined</th></tr></thead>
+      <tbody>
+        <tr><td>Exterior</td><td>Roof, gutters, exterior walls, windows, doors, and foundation</td></tr>
+        <tr><td>Interior</td><td>Walls, ceilings, floors, doors, windows, major appliances, electrical, plumbing, heating, and cooling</td></tr>
+        <tr><td>Attic &amp; Basement</td><td>Insulation, ventilation, structural components, signs of pests or water intrusion</td></tr>
+        <tr><td>Report &amp; Negotiation</td><td>Inspector provides a detailed written report. You can accept as-is, request seller repairs, or negotiate a credit at closing.</td></tr>
+      </tbody>
+    </table>
+    <div class="pro-tip">
+      <div class="pro-tip-label">Pro Tip</div>
+      <div class="pro-tip-text">Always attend the inspection in person. Your inspector will walk you through every finding in real time — this is your single best opportunity to understand the true condition of the home before you commit.</div>
+    </div>
+  </div>
+</div>
+
+<div class="section-divider"></div>
+
+<!-- 07 TITLE & INSURANCE -->
+<div id="s-title" class="section">
+  <div class="section-header">
+    <div class="section-tag">Step 5</div>
+    <div class="section-title">Appraisal, Title &amp; Insurance</div>
+  </div>
+  <div class="section-body">
+    <div class="info-card"><div class="info-card-title">Appraisal Ordered</div><div class="info-card-text">Your lender arranges for a third-party appraiser to provide an independent estimate of the home's value. The appraisal confirms the price is fair and the loan amount is justified.</div></div>
+    <div class="info-card teal"><div class="info-card-title">Property Title Search</div><div class="info-card-text">A title search examines public records to confirm legal ownership and check for outstanding liens. It ensures clear ownership and addresses any issues before the sale — performed by a title company or real estate attorney.</div></div>
+    <table class="data-table">
+      <thead><tr><th>What Clear Title Verifies</th><th>Common Issues (Usually Resolved Quickly)</th></tr></thead>
+      <tbody>
+        <tr><td>Legal ownership of the property</td><td>Outstanding mortgage balances</td></tr>
+        <tr><td>Accuracy of the property description</td><td>HOA liens or unpaid assessments</td></tr>
+        <tr><td>Seller has the legal right to sell</td><td>Tax liens</td></tr>
+        <tr><td>No unresolved claims remain on title</td><td>Errors in public records or prior deeds</td></tr>
+      </tbody>
+    </table>
+    <div class="info-card green"><div class="info-card-title">Homeowners Insurance</div><div class="info-card-text">Required by your lender before closing. Protects against fire, storms, flooding, and liability. Get quotes from at least 2–3 providers. Even cash buyers should carry it.</div></div>
+    <div class="info-card"><div class="info-card-title">Home Warranty</div><div class="info-card-text">Covers the cost of repairing or replacing major systems and appliances from normal wear and tear. Think: A/C stops cooling, dishwasher breaks, water heater quits. Typically $400–$700/year.</div></div>
+    <h3>Typically Covered by Home Warranty</h3>
+    <table class="data-table">
+      <thead><tr><th>Covered (Varies by Plan)</th><th>Optional Add-Ons</th></tr></thead>
+      <tbody>
+        <tr><td>Heating &amp; Air Conditioning Systems</td><td>Pool &amp; Spa Equipment</td></tr>
+        <tr><td>Plumbing &amp; Electrical Systems</td><td>Septic System</td></tr>
+        <tr><td>Water Heaters</td><td>Well Pump</td></tr>
+        <tr><td>Kitchen Appliances</td><td>Roof Leak Repair</td></tr>
+        <tr><td>Garage Door Openers</td><td>Second Refrigerator</td></tr>
+      </tbody>
+    </table>
+    <div class="info-card navy"><div class="info-card-title">Nevada Homestead Declaration</div><div class="info-card-text">Filing a Declaration of Homestead protects your primary residence from being forcibly sold by most unsecured creditors. It protects up to $605,000 in home equity and takes less than 30 minutes to file. Ask Misty for the form link.</div></div>
+  </div>
+</div>
+
+<div class="section-divider"></div>
+
+<!-- 08 MOVING & CLOSING -->
+<div id="s-moving" class="section">
+  <div class="section-header">
+    <div class="section-tag">Planning Ahead</div>
+    <div class="section-title">Moving &amp; Closing Timeline</div>
+  </div>
+  <div class="section-body">
+    <table class="timeline-table">
+      <thead><tr><th>When</th><th>What to Do</th></tr></thead>
+      <tbody>
+        <tr><td>6–8 Weeks Before</td><td>Finalize mortgage · Schedule inspection · Declutter · Donate unneeded items · Copy important documents · Get 3+ moving estimates</td></tr>
+        <tr><td>4–6 Weeks Before</td><td>Give 30 days' notice to landlord · Book movers · Purchase packing materials · Begin packing non-essentials</td></tr>
+        <tr><td>2–4 Weeks Before</td><td>Arrange appraisal · Complete title search · Secure home warranty · Get homeowner's insurance quotes</td></tr>
+        <tr><td>1–2 Weeks Before</td><td>Contact all utilities · Update your address (USPS, bank, DMV) · Schedule closing appointment</td></tr>
+        <tr><td>Moving Week</td><td>Obtain certified checks for closing · Final walk-through · Finish packing · Pack essentials bag · Confirm mover arrival time</td></tr>
+      </tbody>
+    </table>
+    <h3>Who Typically Pays What at Closing</h3>
+    <table class="data-table" style="font-size:11px">
+      <thead><tr><th>Cost Item</th><th>Cash</th><th>FHA</th><th>VA</th><th>Conv</th></tr></thead>
+      <tbody>
+        <tr><td>Down Payment</td><td>B</td><td>B</td><td>B</td><td>B</td></tr>
+        <tr><td>Property Inspection</td><td>B</td><td>B</td><td>B</td><td>B</td></tr>
+        <tr><td>Appraisal Fee</td><td>B</td><td>B</td><td>B</td><td>B</td></tr>
+        <tr><td>Loan Origination Fee</td><td>S</td><td>S</td><td>B</td><td>S</td></tr>
+        <tr><td>Lender's Title Policy</td><td>S</td><td>S</td><td>S</td><td>S</td></tr>
+        <tr><td>Escrow Fee</td><td>Split</td><td>Split</td><td>S</td><td>Split</td></tr>
+        <tr><td>Homeowners Insurance</td><td>B</td><td>B</td><td>B</td><td>B</td></tr>
+        <tr><td>Home Warranty</td><td>B</td><td>B</td><td>B</td><td>B</td></tr>
+      </tbody>
+    </table>
+    <p style="font-size:11px;color:var(--gray)">B = Buyer · S = Seller · Many items are negotiable. Always confirm with your agent.</p>
+  </div>
+</div>
+
+<div class="section-divider"></div>
+
+<!-- 09 UTILITIES -->
+<div id="s-utilities" class="section">
+  <div class="section-header">
+    <div class="section-tag">Getting Set Up</div>
+    <div class="section-title">Las Vegas Utility Providers</div>
+  </div>
+  <div class="section-body">
+    <p>Reach out to each provider in advance to schedule service so everything is ready the day you move in. Most can be set up 1–2 weeks before your move date.</p>
+    <div class="util-row"><div class="util-icon">⚡</div><div class="util-info"><div class="util-type">Electricity</div><div class="util-provider">NV Energy</div></div><div class="util-contact">702-402-5555</div></div>
+    <div class="util-row"><div class="util-icon">🔥</div><div class="util-info"><div class="util-type">Gas</div><div class="util-provider">SouthWest Gas</div></div><div class="util-contact">877-860-6020</div></div>
+    <div class="util-row"><div class="util-icon">💧</div><div class="util-info"><div class="util-type">Water — Las Vegas</div><div class="util-provider">Las Vegas Valley Water District</div></div><div class="util-contact">702-870-4194</div></div>
+    <div class="util-row"><div class="util-icon">💧</div><div class="util-info"><div class="util-type">Water — N. Las Vegas</div><div class="util-provider">North Las Vegas Water</div></div><div class="util-contact">702-633-1484</div></div>
+    <div class="util-row"><div class="util-icon">💧</div><div class="util-info"><div class="util-type">Water — Henderson</div><div class="util-provider">City of Henderson</div></div><div class="util-contact">702-267-5900</div></div>
+    <div class="util-row"><div class="util-icon">🗑️</div><div class="util-info"><div class="util-type">Garbage</div><div class="util-provider">Republic Services</div></div><div class="util-contact">702-735-5151</div></div>
+    <div class="util-row"><div class="util-icon">📡</div><div class="util-info"><div class="util-type">Internet / Cable</div><div class="util-provider">Cox Communications</div></div><div class="util-contact">cox.com</div></div>
+    <div class="util-row"><div class="util-icon">📡</div><div class="util-info"><div class="util-type">Internet / Cable</div><div class="util-provider">Spectrum</div></div><div class="util-contact">spectrum.com</div></div>
+  </div>
+</div>
+
+<div class="section-divider"></div>
+
+<!-- 10 COMMON MISTAKES -->
+<div id="s-mistakes" class="section">
+  <div class="section-header">
+    <div class="section-tag">Avoid These Pitfalls</div>
+    <div class="section-title">Common New Homeowner Mistakes</div>
+  </div>
+  <div class="section-body">
+    <div class="dont-item"><div class="dont-num">1</div><div class="dont-content"><div class="dont-title">Ignoring Home Maintenance</div><div class="dont-text">Budget 1–2% of your home's value annually for upkeep: cleaning gutters, servicing HVAC, power washing, and general repairs. Small issues become expensive if ignored.</div></div></div>
+    <div class="dont-item"><div class="dont-num">2</div><div class="dont-content"><div class="dont-title">Making Major Renovations Too Soon</div><div class="dont-text">Live in the space before committing to large-scale renovations. What you think you want on day one often changes after a few months of actually living there.</div></div></div>
+    <div class="dont-item"><div class="dont-num">3</div><div class="dont-content"><div class="dont-title">Not Budgeting for Additional Expenses</div><div class="dont-text">Beyond the mortgage: property taxes, HOA fees, utilities, insurance, landscaping, and repair materials add up fast. Plan for it so there are no surprises.</div></div></div>
+    <div class="dont-item"><div class="dont-num">4</div><div class="dont-content"><div class="dont-title">Not Changing the Locks</div><div class="dont-text">You never know how many key copies exist. Re-key or replace every exterior lock immediately after closing — it's inexpensive and provides instant peace of mind.</div></div></div>
+    <div class="dont-item"><div class="dont-num">5</div><div class="dont-content"><div class="dont-title">Skipping the Homestead Declaration</div><div class="dont-text">Most Nevada homeowners never file this. It protects up to $605,000 in equity from unsecured creditors and takes less than 30 minutes. Ask Misty for the form.</div></div></div>
+  </div>
+</div>
+
+<div class="section-divider"></div>
+
+<!-- 11 ETHICS -->
+<div id="s-ethics" class="section">
+  <div class="section-header">
+    <div class="section-tag">My Commitment to You</div>
+    <div class="section-title">Ethics You Can Expect From Your REALTOR®</div>
+  </div>
+  <div class="section-body">
+    <p>As a proud member of the National Association of REALTORS® (NAR), we abide by a strict Code of Ethics ensuring you are treated with honesty, fairness, and professionalism at every step.</p>
+    <div class="ethics-item"><div class="ethics-title">Honesty &amp; Integrity</div><div class="ethics-text">Your interests are represented truthfully and transparently at all times — no hidden agendas.</div></div>
+    <div class="ethics-item"><div class="ethics-title">Loyalty &amp; Confidentiality</div><div class="ethics-text">Your personal information and motivations are always kept private and protected.</div></div>
+    <div class="ethics-item"><div class="ethics-title">Fairness &amp; Respect</div><div class="ethics-text">All parties in the transaction are treated honestly, without discrimination or bias.</div></div>
+    <div class="ethics-item"><div class="ethics-title">Fiduciary Duty</div><div class="ethics-text">Your needs and best interests always come first — above all else, always.</div></div>
+    <div class="ethics-item"><div class="ethics-title">Clear Communication</div><div class="ethics-text">You receive timely, accurate information and are kept fully updated throughout the process.</div></div>
+    <div class="ethics-item"><div class="ethics-title">Professional Competence</div><div class="ethics-text">We use our knowledge, skills, and resources to guide you effectively and ethically.</div></div>
+    <div class="ethics-item" style="border-bottom:none"><div class="ethics-title">Accountability</div><div class="ethics-text">We hold ourselves to the highest standards of professional conduct in the industry.</div></div>
+    <div class="pro-tip" style="margin-top:16px">
+      <div class="pro-tip-text">Choosing a REALTOR® means choosing someone committed not just to results, but to the highest level of ethical responsibility in the industry.</div>
+    </div>
+  </div>
+</div>
+
+<div class="section-divider"></div>
+
+<!-- 12 CTA -->
+<div id="s-cta" class="cta-section">
+  <div class="cta-title">Ready to Find Your Dream Home?</div>
+  <div class="cta-sub">We are here every step of the way — from your very first question to the moment you hold the keys. Let's get started.</div>
+  <a href="tel:7023766297" class="cta-phone">📞 Call or Text (702) 376-6297</a>
+  <div class="social-row">
+    <a href="https://www.facebook.com/mlsellslv" target="_blank" class="social-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+      Facebook
+    </a>
+    <a href="https://www.instagram.com/mlsellslv/" target="_blank" class="social-btn social-ig">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+      Instagram
+    </a>
+  </div>
+  <div class="guarantee-badge">🏠 Love It or Leave It — Guaranteed.<br>Buy with confidence. If the home isn't right within 12 months, we will list and sell it for FREE. No listing commission. No fine print. Just confidence.</div>
+</div>
+
+<div class="legal-footer">
+  <div class="legal-text">Misty Sumner · REALTOR® · Lic. S.0192497 · Roland Team / LPT Realty · Las Vegas, NV · (702) 376-6297<br>Information provided for educational purposes only. Not legal or financial advice.</div>
+</div>
+</div>
+</body>
+</html>
