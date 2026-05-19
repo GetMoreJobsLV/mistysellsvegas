@@ -1044,6 +1044,8 @@ async function submitForm() {
   const res = getResult(pct);
   const btn = document.getElementById('btnSubmit');
   btn.disabled = true; btn.textContent = 'Sending...';
+  document.getElementById('resultScoreBig').textContent = pct + '%';
+  document.getElementById('resultScoreLabel').textContent = 'Your Readiness Score';
   try {
     await fetch(FORMSPREE_URL, {
       method: 'POST',
