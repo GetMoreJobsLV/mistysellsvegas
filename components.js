@@ -96,3 +96,11 @@ fetch('partials/footer.html')
     document.body.appendChild(tmp.firstElementChild);
   })
   .catch(e => console.warn('footer.html not found:', e));
+
+// ── META PIXEL EVENT: Contact (fires when any phone link is clicked) ──────
+document.addEventListener('click', function(e) {
+  const link = e.target.closest('a[href^="tel:"]');
+  if (link && typeof fbq !== 'undefined') {
+    fbq('track', 'Contact');
+  }
+});
