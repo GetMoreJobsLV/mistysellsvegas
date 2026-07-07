@@ -33,10 +33,10 @@
 
 <style>
 :root {
-  --navy:#1B2A4A; --navy-l:#243560; --navy-d:#111D33;
-  --gold:#C9A84C; --gold-l:#E8C97A;
-  --white:#FFFFFF; --off:#F7F4EF; --light:#E0DDD7;
-  --gray:#888; --dgray:#3A3733; --green:#2D6A4F;
+  --navy:#2B2B2B; --navy-l:#3A3A3A; --navy-d:#141414;
+  --gold:#1B7C4B; --gold-l:#25A05F;
+  --white:#FFFFFF; --off:#F6F5F2; --light:#E4E2DD;
+  --gray:#888; --dgray:#3A3733; --green:#1B7C4B;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -45,18 +45,18 @@ body { font-family: 'Jost', sans-serif; background: var(--navy-d); min-height: 1
 .page-wrap {
   min-height: 100vh;
   display: flex; align-items: center; justify-content: center;
-  padding: 100px 20px 60px;
+  padding: 48px 20px 60px;
   position: relative; overflow: hidden;
 }
 .page-wrap::before {
   content: ''; position: absolute; inset: 0;
-  background-image: linear-gradient(rgba(201,168,76,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(201,168,76,0.04) 1px, transparent 1px);
+  background-image: linear-gradient(rgba(27,124,75,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(27,124,75,0.05) 1px, transparent 1px);
   background-size: 60px 60px;
 }
 .page-wrap::after {
   content: ''; position: absolute; top: -100px; right: -100px;
   width: 500px; height: 500px; border-radius: 50%;
-  background: radial-gradient(circle, rgba(201,168,76,0.07) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(27,124,75,0.09) 0%, transparent 70%);
   pointer-events: none;
 }
 
@@ -77,7 +77,7 @@ body { font-family: 'Jost', sans-serif; background: var(--navy-d); min-height: 1
 .card-header::before {
   content: ''; position: absolute; bottom: -40px; right: -40px;
   width: 160px; height: 160px; border-radius: 50%;
-  background: rgba(201,168,76,0.06);
+  background: rgba(27,124,75,0.08);
 }
 .eyebrow {
   font-size: 9px; font-weight: 600; letter-spacing: 2.5px;
@@ -178,7 +178,7 @@ body { font-family: 'Jost', sans-serif; background: var(--navy-d); min-height: 1
 .sib-form-block__button {
   width: 100% !important;
   background: var(--gold) !important;
-  color: var(--navy) !important;
+  color: #FFFFFF !important;
   border: none !important;
   border-radius: 4px !important;
   padding: 14px 20px !important;
@@ -198,7 +198,7 @@ body { font-family: 'Jost', sans-serif; background: var(--navy-d); min-height: 1
 .sib-form-block__button:hover {
   background: var(--gold-l) !important;
   transform: translateY(-1px) !important;
-  box-shadow: 0 6px 20px rgba(201,168,76,0.3) !important;
+  box-shadow: 0 6px 20px rgba(27,124,75,0.3) !important;
 }
 
 .legal { font-size: 10px; color: var(--gray); text-align: center; margin-top: 12px; line-height: 1.6; padding: 0 40px 28px; }
@@ -228,7 +228,50 @@ body { font-family: 'Jost', sans-serif; background: var(--navy-d); min-height: 1
 </head>
 <body>
 
-<script src="components.js"></script>
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init','828029163289524');fbq('track','PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=828029163289524&ev=PageView&noscript=1"/></noscript>
+
+<style>
+  .nav{position:sticky;top:0;z-index:80;background:rgba(255,255,255,0.96);backdrop-filter:blur(10px);border-bottom:1px solid var(--light);font-family:'Jost',sans-serif;}
+  .nav-in{max-width:1200px;margin:0 auto;padding:12px 5%;display:flex;align-items:center;justify-content:space-between;gap:20px;}
+  .brand{display:flex;flex-direction:column;line-height:1.2;text-decoration:none;flex-shrink:0;}
+  .brand-name{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600;color:#1A1A1A;}
+  .brand-name em{font-style:normal;color:var(--gold);}
+  .brand-lic{font-size:9.5px;letter-spacing:1.3px;color:#8A8A8A;text-transform:uppercase;}
+  .nav-links{display:flex;align-items:center;gap:6px;}
+  .nav-links a{font-size:12px;font-weight:500;letter-spacing:1.3px;text-transform:uppercase;color:var(--navy);text-decoration:none;padding:9px 14px;border-radius:6px;transition:color .18s,background .18s;}
+  .nav-links a:hover{color:var(--gold);background:var(--off);}
+  .nav-links a.active{color:var(--gold);}
+  .nav-kit{color:#fff!important;background:var(--gold)!important;font-weight:600!important;}
+  .nav-call{border:1.5px solid var(--navy);border-radius:6px;color:var(--navy)!important;font-weight:600!important;}
+  .nav-call:hover{background:var(--navy);color:#fff!important;}
+  .nav-burger{display:none;background:none;border:0;cursor:pointer;padding:8px;}
+  .nav-burger span{display:block;width:24px;height:2px;background:var(--navy);margin:5px 0;}
+  @media (max-width:760px){
+    .nav-links{position:fixed;top:57px;left:0;right:0;background:#fff;border-bottom:1px solid var(--light);flex-direction:column;align-items:stretch;gap:0;padding:8px 5% 16px;transform:translateY(-120%);transition:transform .28s;box-shadow:0 12px 24px rgba(0,0,0,0.08);}
+    .nav-links.open{transform:translateY(0);}
+    .nav-links a{padding:14px 8px;}
+    .nav-call,.nav-kit{text-align:center;margin-top:6px;}
+    .nav-burger{display:block;}
+  }
+</style>
+<nav class="nav">
+  <div class="nav-in">
+    <a href="index.html" class="brand"><span class="brand-name">Misty <em>Sumner</em></span><span class="brand-lic">REALTOR® · Lic. S.0192497 · The Roland Team</span></a>
+    <button class="nav-burger" aria-label="Menu" onclick="document.getElementById('navlinks').classList.toggle('open')"><span></span><span></span><span></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="index.html">Home</a>
+      <a href="how-it-works.html">How It Works</a>
+      <a href="about.html">About Me</a>
+      <a href="contact.html">Get in Contact</a>
+      <a href="unfairadvantagekit.html" class="nav-kit active">Get Free Kit</a>
+      <a href="tel:+17254298704" class="nav-call">Call (725) 429-8704</a>
+    </div>
+  </div>
+</nav>
 
 <div class="page-wrap">
   <div class="card">
@@ -386,7 +429,7 @@ body { font-family: 'Jost', sans-serif; background: var(--navy-d); min-height: 1
         <a href="https://mistysellsvegas.com/buyersguide.html" target="_blank" class="kit-link">The Complete Buyer's Guide <span>→</span></a>
         <a href="https://mistysellsvegas.com/waitvsbuy.html" target="_blank" class="kit-link">The Wait vs. Buy Calculator <span>→</span></a>
       </div>
-      <a href="tel:7023766297" class="call-cta">📞 Questions? Call or Text Misty · (702) 376-6297</a>
+      <a href="tel:+17254298704" class="call-cta">📞 Questions? Call or Text Misty · (725) 429-8704</a>
     </div>
 
   </div>
@@ -442,5 +485,8 @@ body { font-family: 'Jost', sans-serif; background: var(--navy-d); min-height: 1
   observer.observe(document.body, { childList: true, subtree: true, attributes: true, attributeFilter: ['style','class'] });
 </script>
 
+<script>
+document.addEventListener('click',function(e){var l=e.target.closest('a[href^="tel:"]');if(l&&typeof fbq!=='undefined')fbq('track','Contact');});
+</script>
 </body>
 </html>

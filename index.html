@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-SF90BT5CYK"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-SF90BT5CYK');
+</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Buy a Home in Las Vegas — Misty Sumner, REALTOR®</title>
@@ -65,17 +73,17 @@ fbq('track', 'ViewContent', {content_name: 'Home Landing Page'});
 
   /* ── HERO ────────────────────────────── */
   .hero{background:var(--black);color:var(--white);position:relative;overflow:hidden;
-    padding:104px 0 96px;}
+    padding:52px 0 48px;}
   .hero::before{content:"";position:absolute;top:-30%;right:-10%;width:60%;height:160%;
     background:radial-gradient(circle, rgba(27,124,75,0.28) 0%, transparent 62%);pointer-events:none;}
   .hero .wrap{position:relative;z-index:1;}
-  .hero h1{font-size:clamp(40px,6vw,68px);max-width:16ch;font-weight:500;color:var(--white);}
+  .hero h1{font-size:clamp(32px,4.6vw,52px);max-width:20ch;font-weight:500;color:var(--white);}
   .hero h1 .mark{font-style:italic;color:#fff;position:relative;white-space:nowrap;}
   .hero h1 .mark::after{content:"";position:absolute;left:0;right:0;bottom:0.05em;height:0.11em;
     background:var(--emerald-br);border-radius:2px;}
-  .hero-sub{margin-top:26px;max-width:54ch;font-size:19px;font-weight:300;color:rgba(255,255,255,0.82);}
+  .hero-sub{margin-top:18px;max-width:54ch;font-size:18px;font-weight:300;color:rgba(255,255,255,0.82);}
   .hero-sub strong{font-weight:500;color:var(--white);}
-  .ctas{margin-top:38px;display:flex;align-items:center;gap:24px;flex-wrap:wrap;}
+  .ctas{margin-top:26px;display:flex;align-items:center;gap:24px;flex-wrap:wrap;}
   .btn{display:inline-block;background:var(--emerald);color:var(--white);text-decoration:none;
     font-weight:600;font-size:16px;letter-spacing:0.4px;padding:16px 34px;border-radius:8px;
     transition:background .2s,transform .2s;}
@@ -84,7 +92,7 @@ fbq('track', 'ViewContent', {content_name: 'Home Landing Page'});
   .btn-ghost:hover{background:rgba(255,255,255,0.08);border-color:#fff;transform:none;}
   .call-link{color:var(--white);font-size:16px;text-decoration:none;}
   .call-link span{text-decoration:underline;text-underline-offset:4px;font-weight:500;}
-  .hero-trust{margin-top:42px;font-size:11.5px;letter-spacing:1.3px;text-transform:uppercase;
+  .hero-trust{margin-top:28px;font-size:11.5px;letter-spacing:1.3px;text-transform:uppercase;
     color:rgba(255,255,255,0.5);}
 
   /* ── SECTION BASICS ──────────────────── */
@@ -129,10 +137,9 @@ fbq('track', 'ViewContent', {content_name: 'Home Landing Page'});
   .dot.on{background:var(--emerald);width:26px;border-radius:6px;}
 
   /* ── KIT ─────────────────────────────── */
-  .kit-list{margin-top:44px;display:flex;flex-direction:column;}
+  .kit-list{margin-top:44px;display:flex;flex-direction:column;gap:14px;}
   .kit-item{display:grid;grid-template-columns:60px 1fr;gap:20px;align-items:start;
-    padding:26px 0;border-top:1px solid var(--line);}
-  .kit-item:last-child{border-bottom:1px solid var(--line);}
+    padding:26px 28px;background:var(--paper);border:1px solid var(--line);border-radius:12px;}
   .kit-num{font-family:'Cormorant Garamond',serif;font-size:34px;font-weight:600;color:var(--emerald);line-height:1;}
   .kit-item h3{font-size:23px;color:var(--ink);}
   .kit-item p{margin-top:6px;color:var(--soft);max-width:62ch;}
@@ -200,7 +207,7 @@ fbq('track', 'ViewContent', {content_name: 'Home Landing Page'});
     .cards{grid-template-columns:1fr;}
   }
   @media (max-width:760px){
-    section{padding:60px 0;} .hero{padding:74px 0 66px;}
+    section{padding:60px 0;} .hero{padding:44px 0 40px;}
     .nav-links{position:fixed;top:57px;left:0;right:0;background:var(--white);
       border-bottom:1px solid var(--line);flex-direction:column;align-items:stretch;
       gap:0;padding:8px 5% 16px;transform:translateY(-120%);transition:transform .28s;
@@ -241,6 +248,7 @@ fbq('track', 'ViewContent', {content_name: 'Home Landing Page'});
     <div class="nav-links" id="navlinks">
       <a href="index.html" class="active">Home</a>
       <a href="how-it-works.html">How It Works</a>
+      <a href="about.html">About Me</a>
       <a href="contact.html">Get in Contact</a>
       <a href="unfairadvantagekit.html" class="nav-kit">Get Free Kit</a>
       <a href="tel:+17254298704" class="nav-call">Call (725) 429-8704</a>
@@ -251,8 +259,8 @@ fbq('track', 'ViewContent', {content_name: 'Home Landing Page'});
 <!-- HERO -->
 <header class="hero">
   <div class="wrap">
-    <h1>You didn't plan to still be <span class="mark">renting</span> at this point. Let's change that.</h1>
-    <p class="hero-sub"><strong>I don't deal with problems. I deal with solutions.</strong> Get the clarity you need to buy a home that actually fits your life — no pressure, no confusion.</p>
+    <h1>I don't deal with problems. I deal with <span class="mark">solutions</span>.</h1>
+    <p class="hero-sub"><strong>You didn't plan to still be renting at this point. Let's change that.</strong> Get the clarity you need to buy a home that actually fits your life — no pressure, no confusion.</p>
     <div class="ctas">
       <a href="unfairadvantagekit.html" class="btn">Get the Free Buyer's Kit</a>
       <a href="tel:+17254298704" class="call-link">or call me directly: <span>(725) 429-8704</span></a>
@@ -305,7 +313,7 @@ fbq('track', 'ViewContent', {content_name: 'Home Landing Page'});
 <section id="kit">
   <div class="wrap">
     <p class="eyebrow">The Home Buyer's Unfair Advantage Kit</p>
-    <h2 class="title">You don't need a cheerleader. You need a roadmap.</h2>
+    <h2 class="title">Answer the questions you didn't even know you had.</h2>
     <p class="intro">When you request the kit, you get five tools designed to take you from "should I even try?" to "I'm ready to buy." Not because I'm selling you something — because clarity leads to action.</p>
     <div class="kit-list">
       <div class="kit-item"><div class="kit-num">1</div><div>

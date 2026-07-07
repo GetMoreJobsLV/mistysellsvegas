@@ -11,8 +11,8 @@
 </script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Get in Contact — Misty Sumner, REALTOR®</title>
-<meta name="description" content="Call or text Misty Sumner, Las Vegas REALTOR®, or grab the free Home Buyer's Unfair Advantage Kit. Personal guidance for buying a home in Las Vegas.">
+<title>About Misty — Misty Sumner, REALTOR®</title>
+<meta name="description" content="Meet Misty Sumner, Las Vegas REALTOR® with The Roland Team / LPT Realty. Over $10M in closed deals since 2021, and personal guidance for every client.">
 <link rel="icon" type="image/png" href="favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -29,6 +29,7 @@ fbq('init','828029163289524');fbq('track','PageView');
   body{font-family:'Jost',sans-serif;font-weight:300;background:var(--white);color:var(--ink);font-size:17px;line-height:1.7;-webkit-font-smoothing:antialiased;}
   h1,h2,h3{font-family:'Cormorant Garamond',serif;font-weight:600;line-height:1.13;}
   a{color:inherit;}
+  img{display:block;max-width:100%;}
   .wrap{max-width:1000px;margin:0 auto;padding:0 6%;}
   .nav{position:sticky;top:0;z-index:80;background:rgba(255,255,255,0.96);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);}
   .nav-in{max-width:1200px;margin:0 auto;padding:12px 5%;display:flex;align-items:center;justify-content:space-between;gap:20px;}
@@ -46,40 +47,42 @@ fbq('init','828029163289524');fbq('track','PageView');
   .nav-call:hover{background:var(--coal);color:var(--white)!important;}
   .nav-burger{display:none;background:none;border:0;cursor:pointer;padding:8px;}
   .nav-burger span{display:block;width:24px;height:2px;background:var(--coal);margin:5px 0;}
-  .phead{background:var(--black);color:#fff;padding:84px 0 72px;position:relative;overflow:hidden;}
-  .phead::before{content:"";position:absolute;top:-30%;right:-10%;width:55%;height:160%;background:radial-gradient(circle,rgba(27,124,75,0.28) 0%,transparent 62%);}
-  .phead .wrap{position:relative;z-index:1;}
-  .phead .eyebrow{color:var(--emerald-br);}
-  .phead h1{font-size:clamp(38px,5.5vw,60px);color:#fff;font-weight:500;max-width:16ch;}
-  .phead p{margin-top:20px;max-width:54ch;color:rgba(255,255,255,0.82);font-size:19px;}
-  .eyebrow{font-size:12px;letter-spacing:2.6px;text-transform:uppercase;color:var(--emerald);font-weight:600;margin-bottom:14px;}
+  .meet-hero{background:var(--coal);color:#fff;padding:80px 0;position:relative;overflow:hidden;}
+  .meet-hero::before{content:"";position:absolute;top:-30%;right:-10%;width:55%;height:160%;background:radial-gradient(circle,rgba(27,124,75,0.28) 0%,transparent 62%);}
+  .meet-hero .wrap{position:relative;z-index:1;}
+  .meet{display:grid;grid-template-columns:300px 1fr;gap:52px;align-items:center;}
+  .meet-photo{width:300px;height:300px;border-radius:50%;object-fit:cover;border:5px solid var(--emerald);justify-self:center;}
+  .eyebrow{font-size:12px;letter-spacing:2.6px;text-transform:uppercase;color:var(--emerald-br);font-weight:600;margin-bottom:14px;}
+  .meet h1{font-size:clamp(32px,4.6vw,50px);color:#fff;font-weight:500;}
+  .meet .lead{margin-top:16px;font-size:19px;color:rgba(255,255,255,0.9);}
+  .meet p{margin-top:14px;color:rgba(255,255,255,0.72);max-width:58ch;}
+  .meet-stats{margin-top:28px;display:flex;gap:40px;flex-wrap:wrap;}
+  .ms-num{font-family:'Cormorant Garamond',serif;font-size:40px;font-weight:600;color:var(--emerald-br);line-height:1;}
+  .ms-label{font-size:12.5px;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,0.6);margin-top:6px;}
   section{padding:80px 0;}
-  .grid{display:grid;grid-template-columns:1fr 1fr;gap:22px;}
-  .box{border:1px solid var(--line);border-radius:14px;padding:38px 34px;background:var(--white);}
-  .box.em{background:var(--emerald);color:#fff;border-color:var(--emerald);}
-  .box .lbl{font-size:12px;letter-spacing:2px;text-transform:uppercase;font-weight:600;color:var(--emerald);margin-bottom:12px;}
-  .box.em .lbl{color:rgba(255,255,255,0.85);}
-  .box h2{font-size:30px;color:var(--ink);}
-  .box.em h2{color:#fff;}
-  .box p{margin-top:12px;color:var(--soft);}
-  .box.em p{color:rgba(255,255,255,0.9);}
-  .big-num{font-family:'Cormorant Garamond',serif;font-size:38px;font-weight:600;color:#fff;margin-top:6px;display:inline-block;text-decoration:none;}
-  .btn{display:inline-block;background:var(--emerald);color:#fff;text-decoration:none;font-weight:600;font-size:16px;padding:15px 30px;border-radius:8px;transition:background .2s;margin-top:22px;}
-  .btn:hover{background:var(--emerald-br);}
-  .btn-w{background:#fff;color:var(--emerald-d);}
-  .btn-w:hover{background:var(--paper);}
-  .info-row{display:flex;gap:14px;align-items:baseline;margin-top:16px;}
-  .info-row .k{font-size:12px;letter-spacing:1.5px;text-transform:uppercase;color:var(--soft-l);min-width:120px;font-weight:500;}
-  .info-row .v{color:var(--ink);}
+  .eyebrow-l{font-size:12px;letter-spacing:2.6px;text-transform:uppercase;color:var(--emerald);font-weight:600;margin-bottom:14px;}
+  .title{font-size:clamp(30px,4.2vw,44px);color:var(--ink);max-width:22ch;}
+  .body-col{margin-top:24px;max-width:66ch;color:var(--soft);}
+  .body-col p+p{margin-top:16px;}
+  .body-col strong{font-weight:500;color:var(--ink);}
+  .values{margin-top:44px;display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+  .val{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:30px 26px;}
+  .val h3{font-size:22px;color:var(--ink);}
+  .val p{margin-top:10px;color:var(--soft);font-size:16px;}
+  .cta-band{background:var(--emerald);color:#fff;text-align:center;}
+  .cta-band h2{font-size:clamp(30px,4.4vw,46px);color:#fff;}
+  .cta-band p{margin:16px auto 30px;max-width:44ch;color:rgba(255,255,255,0.92);}
+  .btn{display:inline-block;background:#fff;color:var(--emerald-d);text-decoration:none;font-weight:600;font-size:16px;padding:16px 34px;border-radius:8px;transition:background .2s;margin:0 8px;}
+  .btn:hover{background:var(--paper);}
   .foot{background:var(--black);color:rgba(255,255,255,0.55);padding:40px 6%;text-align:center;font-size:12px;line-height:1.8;}
   .foot a{color:rgba(255,255,255,0.8);}
   .callbar{display:none;}
+  @media (max-width:900px){.meet{grid-template-columns:1fr;gap:32px;text-align:center;}.meet-stats{justify-content:center;}.values{grid-template-columns:1fr;}}
   @media (max-width:760px){
-    section{padding:56px 0;}.phead{padding:64px 0 56px;}
+    section{padding:56px 0;}.meet-hero{padding:56px 0;}
     .nav-links{position:fixed;top:57px;left:0;right:0;background:#fff;border-bottom:1px solid var(--line);flex-direction:column;align-items:stretch;gap:0;padding:8px 5% 16px;transform:translateY(-120%);transition:transform .28s;box-shadow:0 12px 24px rgba(0,0,0,0.08);}
     .nav-links.open{transform:translateY(0);}.nav-links a{padding:14px 8px;}.nav-call,.nav-kit{text-align:center;margin-top:6px;}
     .nav-burger{display:block;}
-    .grid{grid-template-columns:1fr;}
     body{padding-bottom:62px;}
     .callbar{display:flex;position:fixed;bottom:0;left:0;right:0;z-index:70;background:var(--emerald);}
     .callbar a{flex:1;text-align:center;padding:16px 8px;text-decoration:none;color:#fff;font-weight:600;font-size:15px;}
@@ -96,51 +99,65 @@ fbq('init','828029163289524');fbq('track','PageView');
     <div class="nav-links" id="navlinks">
       <a href="index.html">Home</a>
       <a href="how-it-works.html">How It Works</a>
-      <a href="about.html">About Me</a>
-      <a href="contact.html" class="active">Get in Contact</a>
+      <a href="about.html" class="active">About Me</a>
+      <a href="contact.html">Get in Contact</a>
       <a href="unfairadvantagekit.html" class="nav-kit">Get Free Kit</a>
       <a href="tel:+17254298704" class="nav-call">Call (725) 429-8704</a>
     </div>
   </div>
 </nav>
 
-<header class="phead">
-  <div class="wrap" style="display:flex;align-items:center;gap:36px;flex-wrap:wrap;">
-    <img src="misty-pro.jpg" alt="Misty Sumner, REALTOR®" style="width:150px;height:150px;border-radius:50%;object-fit:cover;border:4px solid var(--emerald);flex-shrink:0;">
-    <div style="flex:1;min-width:260px;">
-    <p class="eyebrow">Get in contact</p>
-    <h1>Let's talk. No pressure, no pitch.</h1>
-    <p>Call me directly, or grab the free kit first and reach out when you're ready. Whatever's easiest for you.</p>
+<header class="meet-hero">
+  <div class="wrap">
+    <div class="meet">
+      <img src="misty-candid.jpg" alt="Misty Sumner, REALTOR®" class="meet-photo">
+      <div>
+        <p class="eyebrow">About me</p>
+        <h1>A guide who actually gets your situation.</h1>
+        <p class="lead">Buying a home is one of the biggest decisions you'll make. You shouldn't have to make it with someone who treats you like a transaction.</p>
+        <div class="meet-stats">
+          <div><div class="ms-num">$10M+</div><div class="ms-label">In closed deals</div></div>
+          <div><div class="ms-num">2021</div><div class="ms-label">Serving Las Vegas since</div></div>
+          <div><div class="ms-num">100%</div><div class="ms-label">Personal service</div></div>
+        </div>
+      </div>
     </div>
   </div>
 </header>
 
 <section>
   <div class="wrap">
-    <div class="grid">
-      <div class="box em">
-        <div class="lbl">Call or text</div>
-        <h2>Reach me directly</h2>
-        <p>You'll talk to me — not an assistant, not a call center.</p>
-        <a href="tel:+17254298704" class="big-num">(725) 429-8704</a><br>
-        <a href="tel:+17254298704" class="btn btn-w">Call Now</a>
-      </div>
-      <div class="box">
-        <div class="lbl">Start here</div>
-        <h2>Get the free kit</h2>
-        <p>Five tools that show you where you stand and what's actually possible — before we ever talk. Delivered instantly, no cost.</p>
-        <a href="unfairadvantagekit.html" class="btn">Get the Free Buyer's Kit</a>
-      </div>
+    <p class="eyebrow-l">My story</p>
+    <h2 class="title">Why I do this differently.</h2>
+    <div class="body-col">
+      <p>I've helped buyers across Las Vegas through every kind of market since 2021 — first-timers, people starting over, and folks who simply didn't plan to still be renting at this stage of life. Whatever brought you here, my job is the same: give you accurate information, honest guidance, and a clear picture of what's actually possible for you.</p>
+      <p><strong>I don't deal with problems. I deal with solutions.</strong> When something comes up in a deal — and something always comes up — you won't get a shrug or a "let's wait and see." You'll get options, a recommendation, and a plan. That's the job.</p>
+      <p>And you'll always be working with <strong>me</strong>. Not an assistant, not a call center, not a rotating "team member." When you call, I answer. When you have a question at 8pm about a house you just drove past, I want to hear about it.</p>
     </div>
 
-    <div class="box" style="margin-top:22px;">
-      <div class="lbl">The details</div>
-      <div class="info-row"><div class="k">Agent</div><div class="v">Misty Sumner, REALTOR® · Lic. S.0192497</div></div>
-      <div class="info-row"><div class="k">Brokerage</div><div class="v">The Roland Team / LPT Realty</div></div>
-      <div class="info-row"><div class="k">Serves</div><div class="v">Las Vegas, Henderson, Summerlin & surrounding areas</div></div>
-      <div class="info-row"><div class="k">Phone</div><div class="v"><a href="tel:+17254298704" style="color:var(--emerald);font-weight:500;">(725) 429-8704</a></div></div>
-      <div class="info-row"><div class="k">Hours</div><div class="v">By appointment — reach out any time and I'll get back to you.</div></div>
+    <div class="values">
+      <div class="val">
+        <h3>Honesty over hype</h3>
+        <p>If a house is wrong for you, I'll say so — even if it costs me a quick commission. My business is built on people trusting me the second time, and the tenth.</p>
+      </div>
+      <div class="val">
+        <h3>Clarity over pressure</h3>
+        <p>You'll never be rushed into a decision. Every step comes with the data behind it, so you decide with confidence instead of anxiety.</p>
+      </div>
+      <div class="val">
+        <h3>Effort as a standard</h3>
+        <p>Every client gets my full attention — from the first conversation to keys in hand, and even after closing with perks like up to 50% off Sherwin-Williams paint.</p>
+      </div>
     </div>
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="wrap">
+    <h2>Let's find out what's possible for you.</h2>
+    <p>Start with the free kit, or just call me. Either way, no pressure — just clarity.</p>
+    <a href="unfairadvantagekit.html" class="btn">Get the Free Buyer's Kit</a>
+    <a href="tel:+17254298704" class="btn">Call (725) 429-8704</a>
   </div>
 </section>
 
