@@ -238,6 +238,45 @@ fbq('track', 'ViewContent', {content_name: 'Home Landing Page'});
   }
   a:focus-visible,summary:focus-visible,button:focus-visible{
     outline:2px solid var(--emerald);outline-offset:3px;border-radius:4px;}
+
+  /* ── Sticky lead-capture bar ── */
+  .nav{transition:transform .3s ease;}
+  body.scrolled-down .nav{transform:translateY(-100%);}
+  .leadbar{position:sticky;top:57px;z-index:70;background:var(--coal);
+    border-bottom:1px solid rgba(255,255,255,0.08);transition:top .3s ease;}
+  body.scrolled-down .leadbar{top:0;}
+  .leadbar-in{max-width:1200px;margin:0 auto;padding:11px 5%;display:flex;align-items:center;
+    gap:14px;flex-wrap:wrap;}
+  .leadbar-label{font-family:'Cormorant Garamond',serif;font-size:21px;font-weight:600;color:#fff;
+    white-space:nowrap;flex-shrink:0;}
+  .leadbar-label em{font-style:normal;color:var(--emerald-br);}
+  .leadbar form{display:flex;align-items:stretch;gap:10px;flex:1;flex-wrap:wrap;margin:0;}
+  .leadbar .lf{flex:1;min-width:130px;}
+  .leadbar input[type=text],.leadbar input[type=email],.leadbar input[type=tel]{
+    width:100%;height:42px;border:1px solid rgba(255,255,255,0.18);background:#fff;
+    border-radius:7px;padding:0 14px;font-family:'Jost',sans-serif;font-size:14.5px;color:var(--ink);}
+  .leadbar input::placeholder{color:#9a9a9a;}
+  .leadbar input:focus{outline:2px solid var(--emerald-br);outline-offset:0;border-color:transparent;}
+  .leadbar .sib-sms-input{display:flex;gap:0;}
+  .leadbar select[name="SMS__COUNTRY_CODE"]{height:42px;border:1px solid rgba(255,255,255,0.18);
+    border-right:0;border-radius:7px 0 0 7px;background:#fff;padding:0 6px;font-size:13px;color:var(--ink);max-width:70px;}
+  .leadbar .sib-sms-input input#SMS{border-radius:0 7px 7px 0;}
+  .leadbar .lbtn{height:42px;border:0;border-radius:7px;background:var(--emerald);color:#fff;
+    font-family:'Jost',sans-serif;font-weight:600;font-size:14.5px;letter-spacing:.3px;padding:0 22px;
+    white-space:nowrap;cursor:pointer;transition:background .2s;flex-shrink:0;}
+  .leadbar .lbtn:hover{background:var(--emerald-br);}
+  .leadbar .lb-msg{width:100%;font-size:14px;padding:6px 2px 0;display:none;}
+  .leadbar #lb-success{color:#8ff0bd;} .leadbar #lb-error{color:#ffb4b4;}
+  .leadbar .hp{position:absolute!important;left:-9999px!important;}
+  @media (max-width:760px){
+    .leadbar{top:57px;}
+    .leadbar-in{padding:10px 5%;gap:9px;}
+    .leadbar-label{font-size:18px;width:100%;}
+    .leadbar form{gap:8px;}
+    .leadbar .lf{min-width:calc(50% - 4px);}
+    .leadbar .lbtn{width:100%;}
+  }
+
 </style>
 </head>
 <body>
@@ -262,6 +301,34 @@ fbq('track', 'ViewContent', {content_name: 'Home Landing Page'});
     </div>
   </div>
 </nav>
+
+<!-- Sticky lead-capture bar (Brevo → List 5) -->
+<div class="leadbar">
+  <div class="leadbar-in">
+    <div class="leadbar-label">Get the <em>Free Kit</em></div>
+    <div class="sib-form">
+      <div id="error-message" style="display:none"></div>
+      <div id="success-message" style="display:none"></div>
+      <form id="sib-form" method="POST" action="https://febdbab1.sibforms.com/serve/MUIFABY1G59wC2Kr51GqP1YnzNCJ-U9exyBPbR85aTHu_wOhaRdYbV9jXQml0IdCwWvXHqjw9xYDZZttxuaqulPKPFZAv8KqkTz4YxnFXjb4JjUYixr9tkiRnj2gCj7H20hBobpUgdTk0iXWYKqrca4E1MAeMijGevCJnytazhLQqnX_KS_SQCyvH5VVV6PVaufc-KNPr8Q48oMd-w==" data-type="subscription">
+        <div class="lf"><input type="text" id="FIRSTNAME" name="FIRSTNAME" placeholder="First name" autocomplete="given-name" data-required="true" required></div>
+        <div class="lf"><input type="email" id="EMAIL" name="EMAIL" placeholder="Email address" autocomplete="email" data-required="true" required></div>
+        <div class="lf">
+          <div class="sib-sms-input" data-placeholder="Phone" data-required="1" data-country-code="US" data-value="" data-attributename="SMS">
+            <select name="SMS__COUNTRY_CODE" data-required="true"><option value="+1" selected>+1</option></select>
+            <input type="tel" id="SMS" name="SMS" placeholder="Phone number" autocomplete="tel" data-required="true" required>
+          </div>
+        </div>
+        <button class="lbtn sib-form-block__button sib-form-block__button-with-loader" form="sib-form" type="submit">Get the Free Kit →</button>
+        <input type="hidden" id="LASTNAME" name="LASTNAME" value="">
+        <input type="text" name="email_address_check" value="" class="hp">
+        <input type="hidden" name="locale" value="en">
+        <div class="lb-msg" id="lb-success">✓ Sent! Check your email for the kit.</div>
+        <div class="lb-msg" id="lb-error">Something went wrong — please try again.</div>
+      </form>
+    </div>
+  </div>
+</div>
+
 
 <!-- HERO -->
 <header class="hero">
@@ -469,5 +536,52 @@ document.addEventListener('click',function(e){
   if(l&&typeof fbq!=='undefined')fbq('track','Contact');
 });
 </script>
+
+<script>
+/* Split single name into FIRSTNAME/LASTNAME before Brevo submits */
+(function(){
+  var f=document.getElementById('sib-form');
+  if(f){f.addEventListener('submit',function(){
+    var fn=document.getElementById('FIRSTNAME'), ln=document.getElementById('LASTNAME');
+    if(fn && ln){var parts=fn.value.trim().split(/\s+/);
+      if(parts.length>1){ln.value=parts.slice(1).join(' ');}else{ln.value=parts[0]||'-';}}
+  },true);}
+})();
+/* Hide nav on scroll down, reveal on scroll up */
+(function(){
+  var lastY=0,ticking=false,TH=120;
+  function upd(){var y=window.pageYOffset||document.documentElement.scrollTop;
+    if(y>TH && y>lastY+2){document.body.classList.add('scrolled-down');}
+    else if(y<lastY-2||y<=TH){document.body.classList.remove('scrolled-down');}
+    lastY=y;ticking=false;}
+  window.addEventListener('scroll',function(){if(!ticking){requestAnimationFrame(upd);ticking=true;}},{passive:true});
+})();
+/* Fire Meta Pixel Lead when Brevo success panel appears */
+(function(){
+  var sm=document.getElementById('success-message');
+  if(sm){new MutationObserver(function(){
+    var vis=sm.style.display!=='none'&&sm.offsetParent!==null;
+    if(vis){var s2=document.getElementById('lb-success');if(s2)s2.style.display='block';
+      if(typeof fbq!=='undefined')fbq('track','Lead',{content_name:'Home Sticky Kit Form',value:485,currency:'USD'});}
+  }).observe(sm,{attributes:true,childList:true,subtree:true});}
+  var em=document.getElementById('error-message');
+  if(em){new MutationObserver(function(){
+    if(em.style.display!=='none'&&em.offsetParent!==null){var e2=document.getElementById('lb-error');if(e2)e2.style.display='block';}
+  }).observe(em,{attributes:true,childList:true,subtree:true});}
+})();
+</script>
+<!-- ── BREVO REQUIRED FOOTER SCRIPTS (do not remove) ── -->
+<script>
+  window.REQUIRED_CODE_ERROR_MESSAGE = 'Please choose a country code';
+  window.LOCALE = 'en';
+  window.EMAIL_INVALID_MESSAGE = window.SMS_INVALID_MESSAGE = "The information provided is invalid. Please review the field format and try again.";
+  window.REQUIRED_ERROR_MESSAGE = "This field cannot be left blank. ";
+  window.GENERIC_INVALID_MESSAGE = "The information provided is invalid. Please review the field format and try again.";
+  window.translation = { common: { selectedList: '{quantity} list selected', selectedLists: '{quantity} lists selected', selectedOption: '{quantity} selected', selectedOptions: '{quantity} selected' } };
+  var AUTOHIDE = Boolean(0);
+</script>
+<script defer src="https://sibforms.com/forms/end-form/build/main.js"></script>
+<!-- ── END BREVO REQUIRED FOOTER SCRIPTS ── -->
+
 </body>
 </html>
