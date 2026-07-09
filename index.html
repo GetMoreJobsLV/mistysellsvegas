@@ -267,6 +267,11 @@ fbq('track', 'ViewContent', {content_name: 'Home Landing Page'});
     color:rgba(255,255,255,0.85);text-decoration:underline;text-underline-offset:3px;
     font-family:'Jost',sans-serif;font-size:14px;white-space:nowrap;transition:color .18s;}
   .leadbar .lb-kitlink:hover{color:#fff;}
+  .leadbar .lb-sms{display:flex;width:100%;}
+  .leadbar .lb-sms select[name="SMS__COUNTRY_CODE"]{
+    position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;
+    clip:rect(0,0,0,0);white-space:nowrap;border:0;}
+  .leadbar .lb-sms input#SMS{width:100%;}
   .leadbar .lb-msg{width:100%;font-size:14px;padding:6px 2px 0;display:none;}
   .leadbar #lb-success{color:#8ff0bd;} .leadbar #lb-error{color:#ffb4b4;}
   .leadbar .hp{position:absolute!important;left:-9999px!important;}
@@ -331,7 +336,12 @@ fbq('track', 'ViewContent', {content_name: 'Home Landing Page'});
       <form id="sib-form" method="POST" action="https://febdbab1.sibforms.com/serve/MUIFABY1G59wC2Kr51GqP1YnzNCJ-U9exyBPbR85aTHu_wOhaRdYbV9jXQml0IdCwWvXHqjw9xYDZZttxuaqulPKPFZAv8KqkTz4YxnFXjb4JjUYixr9tkiRnj2gCj7H20hBobpUgdTk0iXWYKqrca4E1MAeMijGevCJnytazhLQqnX_KS_SQCyvH5VVV6PVaufc-KNPr8Q48oMd-w==" data-type="subscription">
         <div class="lf"><input type="text" id="FIRSTNAME" name="FIRSTNAME" placeholder="First name" autocomplete="given-name" data-required="true" required></div>
         <div class="lf"><input type="email" id="EMAIL" name="EMAIL" placeholder="Email address" autocomplete="email" data-required="true" required></div>
-        <div class="lf"><input type="tel" id="SMS" name="SMS" placeholder="Phone number" autocomplete="tel" data-required="true" required></div>
+        <div class="lf">
+          <div class="sib-sms-input lb-sms" data-placeholder="Phone" data-required="1" data-country-code="US" data-whatsapp-country-code="US" data-value="" data-whatsappvalue="" data-attributename="SMS">
+            <select class="input" name="SMS__COUNTRY_CODE" data-required="true" tabindex="-1" aria-hidden="true"><option value="+1" selected>+1 US</option></select>
+            <input type="tel" class="input" id="SMS" name="SMS" autocomplete="tel" placeholder="Phone number" data-required="true" required />
+          </div>
+        </div>
         <a href="#kit" class="lb-kitlink">What's in the kit?</a>
         <button class="lbtn sib-form-block__button sib-form-block__button-with-loader" form="sib-form" type="submit">Get the Free Kit →</button>
         <input type="hidden" id="LASTNAME" name="LASTNAME" value="">
@@ -561,10 +571,6 @@ document.addEventListener('click',function(e){
     var fn=document.getElementById('FIRSTNAME'), ln=document.getElementById('LASTNAME');
     if(fn && ln){var parts=fn.value.trim().split(/\s+/);
       if(parts.length>1){ln.value=parts.slice(1).join(' ');}else{ln.value=parts[0]||'-';}}
-    var ph=document.getElementById('SMS');
-    if(ph){var d=ph.value.replace(/\D/g,'');
-      if(d.length===10){d='1'+d;}
-      ph.value=d;}
   },true);}
 })();
 /* Hide nav on scroll down, reveal on scroll up */
