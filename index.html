@@ -283,7 +283,10 @@ fbq('track', 'ViewContent', {content_name: 'Home Landing Page'});
     }
     .leadbar-in{transition:padding .5s ease;}
     body.scrolled-down .leadbar-label,
-    body.scrolled-down .leadbar .lf{max-height:0;opacity:0;margin:0;pointer-events:none;}
+    body.scrolled-down .leadbar .lf{
+      max-height:0;opacity:0;margin:0;padding:0;pointer-events:none;
+      flex:0 0 0;min-width:0;width:0;border-width:0;
+    }
     body.scrolled-down .leadbar-in{padding:9px 5%;}
     .leadbar form{flex-direction:row;align-items:center;gap:10px;transition:gap .5s ease;}
     .leadbar .lb-kitlink{transition:width .5s ease, flex .5s ease, padding .5s ease;}
