@@ -243,8 +243,10 @@ fbq('track', 'ViewContent', {content_name: 'Home Landing Page'});
   .nav{transition:transform .3s ease;}
   body.scrolled-down .nav{transform:translateY(-100%);}
   .leadbar{position:sticky;top:57px;z-index:70;background:var(--coal)!important;
-    border-bottom:1px solid rgba(255,255,255,0.08);transition:top .3s ease;}
-  body.scrolled-down .leadbar{top:0;}
+    border-bottom:1px solid rgba(255,255,255,0.08);
+    transition:transform .3s ease;will-change:transform;
+    -webkit-backface-visibility:hidden;backface-visibility:hidden;}
+  body.scrolled-down .leadbar{transform:translateY(-57px);}
   .leadbar-in{max-width:1200px;margin:0 auto;padding:11px 5%;display:flex;align-items:center;
     gap:14px;flex-wrap:wrap;}
   .leadbar-label{font-family:'Cormorant Garamond',serif;font-size:21px;font-weight:600;color:#fff;
