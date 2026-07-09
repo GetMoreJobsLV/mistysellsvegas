@@ -276,10 +276,16 @@ fbq('track', 'ViewContent', {content_name: 'Home Landing Page'});
     .leadbar .lf{min-width:calc(50% - 4px);}
     .leadbar .lbtn{width:100%;}
     .leadbar .lb-kitlink{width:100%;justify-content:center;height:auto;padding:4px 0;}
+    .leadbar-label,.leadbar .lf{
+      max-height:60px;opacity:1;overflow:hidden;
+      transition:max-height .38s ease, opacity .28s ease, margin .38s ease;
+    }
+    .leadbar-in{transition:padding .38s ease;}
     body.scrolled-down .leadbar-label,
-    body.scrolled-down .leadbar .lf{display:none;}
+    body.scrolled-down .leadbar .lf{max-height:0;opacity:0;margin:0;pointer-events:none;}
     body.scrolled-down .leadbar-in{padding:9px 5%;}
-    body.scrolled-down .leadbar form{flex-direction:row;align-items:center;gap:10px;}
+    .leadbar form{flex-direction:row;align-items:center;gap:10px;transition:gap .38s ease;}
+    .leadbar .lb-kitlink{transition:width .38s ease, flex .38s ease, padding .38s ease;}
     body.scrolled-down .leadbar .lb-kitlink{width:auto;flex:1;padding:0;}
     body.scrolled-down .leadbar .lbtn{width:auto;flex-shrink:0;}
   }
