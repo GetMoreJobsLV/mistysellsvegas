@@ -242,7 +242,7 @@ fbq('track', 'ViewContent', {content_name: 'Home Landing Page'});
   /* ── Sticky lead-capture bar ── */
   .nav{transition:transform .3s ease;}
   body.scrolled-down .nav{transform:translateY(-100%);}
-  .leadbar{position:sticky;top:57px;z-index:70;background:var(--coal);
+  .leadbar{position:sticky;top:57px;z-index:70;background:var(--coal)!important;
     border-bottom:1px solid rgba(255,255,255,0.08);transition:top .3s ease;}
   body.scrolled-down .leadbar{top:0;}
   .leadbar-in{max-width:1200px;margin:0 auto;padding:11px 5%;display:flex;align-items:center;
@@ -250,17 +250,13 @@ fbq('track', 'ViewContent', {content_name: 'Home Landing Page'});
   .leadbar-label{font-family:'Cormorant Garamond',serif;font-size:21px;font-weight:600;color:#fff;
     white-space:nowrap;flex-shrink:0;}
   .leadbar-label em{font-style:normal;color:var(--emerald-br);}
-  .leadbar form{display:flex;align-items:stretch;gap:10px;flex:1;flex-wrap:wrap;margin:0;}
+  .leadbar form{display:flex;align-items:stretch;gap:10px;flex:1;flex-wrap:wrap;margin:0;padding:0!important;background:transparent!important;}
   .leadbar .lf{flex:1;min-width:130px;}
   .leadbar input[type=text],.leadbar input[type=email],.leadbar input[type=tel]{
     width:100%;height:42px;border:1px solid rgba(255,255,255,0.18);background:#fff;
     border-radius:7px;padding:0 14px;font-family:'Jost',sans-serif;font-size:14.5px;color:var(--ink);}
   .leadbar input::placeholder{color:#9a9a9a;}
   .leadbar input:focus{outline:2px solid var(--emerald-br);outline-offset:0;border-color:transparent;}
-  .leadbar .sib-sms-input{display:flex;gap:0;}
-  .leadbar select[name="SMS__COUNTRY_CODE"]{height:42px;border:1px solid rgba(255,255,255,0.18);
-    border-right:0;border-radius:7px 0 0 7px;background:#fff;padding:0 6px;font-size:13px;color:var(--ink);max-width:70px;}
-  .leadbar .sib-sms-input input#SMS{border-radius:0 7px 7px 0;}
   .leadbar .lbtn{height:42px;border:0;border-radius:7px;background:var(--emerald);color:#fff;
     font-family:'Jost',sans-serif;font-weight:600;font-size:14.5px;letter-spacing:.3px;padding:0 22px;
     white-space:nowrap;cursor:pointer;transition:background .2s;flex-shrink:0;}
@@ -306,18 +302,13 @@ fbq('track', 'ViewContent', {content_name: 'Home Landing Page'});
 <div class="leadbar">
   <div class="leadbar-in">
     <div class="leadbar-label">Get the <em>Free Kit</em></div>
-    <div class="sib-form">
+    <div class="sib-form" style="background:transparent!important;padding:0!important;flex:1;">
       <div id="error-message" style="display:none"></div>
       <div id="success-message" style="display:none"></div>
       <form id="sib-form" method="POST" action="https://febdbab1.sibforms.com/serve/MUIFABY1G59wC2Kr51GqP1YnzNCJ-U9exyBPbR85aTHu_wOhaRdYbV9jXQml0IdCwWvXHqjw9xYDZZttxuaqulPKPFZAv8KqkTz4YxnFXjb4JjUYixr9tkiRnj2gCj7H20hBobpUgdTk0iXWYKqrca4E1MAeMijGevCJnytazhLQqnX_KS_SQCyvH5VVV6PVaufc-KNPr8Q48oMd-w==" data-type="subscription">
         <div class="lf"><input type="text" id="FIRSTNAME" name="FIRSTNAME" placeholder="First name" autocomplete="given-name" data-required="true" required></div>
         <div class="lf"><input type="email" id="EMAIL" name="EMAIL" placeholder="Email address" autocomplete="email" data-required="true" required></div>
-        <div class="lf">
-          <div class="sib-sms-input" data-placeholder="Phone" data-required="1" data-country-code="US" data-value="" data-attributename="SMS">
-            <select name="SMS__COUNTRY_CODE" data-required="true"><option value="+1" selected>+1</option></select>
-            <input type="tel" id="SMS" name="SMS" placeholder="Phone number" autocomplete="tel" data-required="true" required>
-          </div>
-        </div>
+        <div class="lf"><input type="tel" id="SMS" name="SMS" placeholder="Phone number" autocomplete="tel" data-required="true" required></div>
         <button class="lbtn sib-form-block__button sib-form-block__button-with-loader" form="sib-form" type="submit">Get the Free Kit →</button>
         <input type="hidden" id="LASTNAME" name="LASTNAME" value="">
         <input type="text" name="email_address_check" value="" class="hp">
@@ -337,6 +328,7 @@ fbq('track', 'ViewContent', {content_name: 'Home Landing Page'});
     <p class="hero-sub"><strong>You didn't plan to still be renting at this point. Let's change that.</strong> Get the clarity you need to buy a home that actually fits your life — no pressure, no confusion.</p>
     <div class="ctas">
       <a href="unfairadvantagekit.html" class="btn">Get the Free Buyer's Kit</a>
+      <a href="#kit" class="btn btn-ghost">What's included in the kit?</a>
       <a href="tel:+17754298704" class="call-link">or call me directly: <span>(775) 429-8704</span></a>
     </div>
     <p class="hero-trust">Licensed REALTOR® · Lic. S.0192497 · The Roland Team / LPT Realty · Equal Housing Opportunity</p>
@@ -545,6 +537,10 @@ document.addEventListener('click',function(e){
     var fn=document.getElementById('FIRSTNAME'), ln=document.getElementById('LASTNAME');
     if(fn && ln){var parts=fn.value.trim().split(/\s+/);
       if(parts.length>1){ln.value=parts.slice(1).join(' ');}else{ln.value=parts[0]||'-';}}
+    var ph=document.getElementById('SMS');
+    if(ph){var d=ph.value.replace(/\D/g,'');
+      if(d.length===10){d='1'+d;}
+      ph.value=d;}
   },true);}
 })();
 /* Hide nav on scroll down, reveal on scroll up */
