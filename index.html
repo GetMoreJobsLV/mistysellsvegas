@@ -276,6 +276,12 @@ fbq('track', 'ViewContent', {content_name: 'Home Landing Page'});
     .leadbar .lf{min-width:calc(50% - 4px);}
     .leadbar .lbtn{width:100%;}
     .leadbar .lb-kitlink{width:100%;justify-content:center;height:auto;padding:4px 0;}
+    body.scrolled-down .leadbar-label,
+    body.scrolled-down .leadbar .lf{display:none;}
+    body.scrolled-down .leadbar-in{padding:9px 5%;}
+    body.scrolled-down .leadbar form{flex-direction:row;align-items:center;gap:10px;}
+    body.scrolled-down .leadbar .lb-kitlink{width:auto;flex:1;padding:0;}
+    body.scrolled-down .leadbar .lbtn{width:auto;flex-shrink:0;}
   }
 
 </style>
