@@ -102,6 +102,8 @@ fbq('track', 'ViewContent', {content_name: 'Home Landing Page'});
   .btn-ghost:hover{background:rgba(255,255,255,0.08);border-color:#fff;transform:none;}
   .call-link{color:var(--white);font-size:16px;text-decoration:none;}
   .call-link span{text-decoration:underline;text-underline-offset:4px;font-weight:500;}
+  .scroll-hint{display:none;}
+  @keyframes shbounce{0%,100%{transform:translateY(0);}50%{transform:translateY(5px);}}
   .hero-trust{margin-top:28px;font-size:11.5px;letter-spacing:1.3px;text-transform:uppercase;
     color:rgba(255,255,255,0.5);}
 
@@ -218,6 +220,10 @@ fbq('track', 'ViewContent', {content_name: 'Home Landing Page'});
   }
   @media (max-width:760px){
     section{padding:60px 0;} .hero{padding:44px 0 40px;}
+    .scroll-hint{display:flex;align-items:center;justify-content:center;gap:8px;
+      margin-top:24px;color:rgba(255,255,255,0.72);font-size:14px;letter-spacing:.4px;
+      text-decoration:none;text-align:center;}
+    .scroll-hint span{display:inline-block;animation:shbounce 1.5s ease-in-out infinite;font-size:16px;}
     .nav-links{position:fixed;top:57px;left:0;right:0;background:var(--white);
       border-bottom:1px solid var(--line);flex-direction:column;align-items:stretch;
       gap:0;padding:8px 5% 16px;transform:translateY(-120%);transition:transform .28s;
@@ -272,6 +278,23 @@ fbq('track', 'ViewContent', {content_name: 'Home Landing Page'});
   .leadbar .lb-msg{width:100%;font-size:14px;padding:6px 2px 0;display:none;}
   .leadbar #lb-success{color:#8ff0bd;} .leadbar #lb-error{color:#ffb4b4;}
   .leadbar .hp{position:absolute!important;left:-9999px!important;}
+  /* Desktop: leadbar always single row */
+  @media (min-width:761px){
+    .leadbar{position:relative;overflow:visible;}
+    .leadbar form{flex-wrap:nowrap;}
+    .leadbar .lf{min-width:0;flex:1 1 0;}
+    .leadbar .lf-sms{min-width:0;flex:1.2 1 0;}
+    .leadbar .lf input{min-width:0;}
+    .leadbar .lb-kitlink{white-space:nowrap;}
+    .leadbar .lbtn{white-space:nowrap;}
+    .lb-msg{position:absolute;top:calc(100% + 6px);right:5%;width:auto;
+      background:var(--coal);border:1px solid rgba(255,255,255,0.2);
+      padding:7px 14px;border-radius:8px;box-shadow:0 8px 22px rgba(0,0,0,0.25);}
+  }
+  @media (min-width:761px) and (max-width:1040px){
+    .leadbar-label{display:none;}
+  }
+
   @media (max-width:760px){
     .leadbar{top:57px;}
     .leadbar-in{padding:10px 5%;gap:9px;}
@@ -359,6 +382,7 @@ fbq('track', 'ViewContent', {content_name: 'Home Landing Page'});
       <a href="tel:+17754298704" class="call-link">or call me directly: <span>(775) 429-8704</span></a>
     </div>
     <p class="hero-trust">Licensed REALTOR® · Lic. S.0192497 · The Roland Team / LPT Realty · Equal Housing Opportunity</p>
+    <a href="#sold" class="scroll-hint">Scroll down for more information <span aria-hidden="true">↓</span></a>
   </div>
 </header>
 
@@ -557,14 +581,41 @@ document.addEventListener('click',function(e){
 </script>
 
 <script>
-/* Hide nav on scroll down, reveal on scroll up */
+/* Hide nav on scroll down, reveal on scroll up — with hysteresis to prevent jitter */
 (function(){
-  var lastY=0,ticking=false,TH=120;
-  function upd(){var y=window.pageYOffset||document.documentElement.scrollTop;
-    if(y>TH && y>lastY+2){document.body.classList.add('scrolled-down');}
-    else if(y<lastY-2||y<=TH){document.body.classList.remove('scrolled-down');}
-    lastY=y;ticking=false;}
+  var lastY=window.pageYOffset||0,ticking=false,collapsed=false,upAcc=0,downAcc=0,lockUntil=0;
+  var DOWN_AT=240, DOWN_NEED=24, UP_NEED=48, TOP_AT=90, COOLDOWN=450;
+  function isMobile(){return window.matchMedia('(max-width:760px)').matches;}
+  function upd(){
+    var y=window.pageYOffset||document.documentElement.scrollTop;
+    var d=y-lastY, now=Date.now();
+    if(!isMobile()){
+      if(collapsed){collapsed=false;document.body.classList.remove('scrolled-down');}
+      lastY=y;ticking=false;return;
+    }
+    if(now>=lockUntil){
+      if(!collapsed){
+        upAcc=0;
+        if(d>0){downAcc+=d;}else if(d<-2){downAcc=0;}
+        if(y>DOWN_AT && downAcc>DOWN_NEED){
+          collapsed=true;downAcc=0;lockUntil=now+COOLDOWN;
+          document.body.classList.add('scrolled-down');
+        }
+      }else{
+        downAcc=0;
+        if(d<0){upAcc+=-d;}else if(d>2){upAcc=0;}
+        if(y<TOP_AT || upAcc>UP_NEED){
+          collapsed=false;upAcc=0;lockUntil=now+COOLDOWN;
+          document.body.classList.remove('scrolled-down');
+        }
+      }
+    }
+    lastY=y;ticking=false;
+  }
   window.addEventListener('scroll',function(){if(!ticking){requestAnimationFrame(upd);ticking=true;}},{passive:true});
+  window.addEventListener('resize',function(){
+    if(!isMobile() && collapsed){collapsed=false;document.body.classList.remove('scrolled-down');}
+  },{passive:true});
 })();
 
 </script>
