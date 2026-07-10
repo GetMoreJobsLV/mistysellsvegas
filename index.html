@@ -102,7 +102,6 @@ fbq('track', 'ViewContent', {content_name: 'Home Landing Page'});
   .btn-ghost:hover{background:rgba(255,255,255,0.08);border-color:#fff;transform:none;}
   .call-link{color:var(--white);font-size:16px;text-decoration:none;}
   .call-link span{text-decoration:underline;text-underline-offset:4px;font-weight:500;}
-  .scroll-hint{display:none;}
   @keyframes shbounce{0%,100%{transform:translateY(0);}50%{transform:translateY(5px);}}
   .hero-trust{margin-top:28px;font-size:11.5px;letter-spacing:1.3px;text-transform:uppercase;
     color:rgba(255,255,255,0.5);}
@@ -220,10 +219,6 @@ fbq('track', 'ViewContent', {content_name: 'Home Landing Page'});
   }
   @media (max-width:760px){
     section{padding:60px 0;} .hero{padding:44px 0 40px;}
-    .scroll-hint{display:flex;align-items:center;justify-content:center;gap:8px;
-      margin-top:24px;color:rgba(255,255,255,0.72);font-size:14px;letter-spacing:.4px;
-      text-decoration:none;text-align:center;}
-    .scroll-hint span{display:inline-block;animation:shbounce 1.5s ease-in-out infinite;font-size:16px;}
     .nav-links{position:fixed;top:57px;left:0;right:0;background:var(--white);
       border-bottom:1px solid var(--line);flex-direction:column;align-items:stretch;
       gap:0;padding:8px 5% 16px;transform:translateY(-120%);transition:transform .28s;
@@ -242,6 +237,7 @@ fbq('track', 'ViewContent', {content_name: 'Home Landing Page'});
     .foot-in{flex-direction:column;text-align:center;} .foot-legal{text-align:center;}
   }
   @media (prefers-reduced-motion:reduce){
+    .leadbar-hint span{animation:none;}
     html{scroll-behavior:auto;} .btn:hover,.card:hover{transform:none;}
     .track{transition:none;}
   }
@@ -278,6 +274,13 @@ fbq('track', 'ViewContent', {content_name: 'Home Landing Page'});
   .leadbar .lb-msg{width:100%;font-size:14px;padding:6px 2px 0;display:none;}
   .leadbar #lb-success{color:#8ff0bd;} .leadbar #lb-error{color:#ffb4b4;}
   .leadbar .hp{position:absolute!important;left:-9999px!important;}
+  .leadbar-hint{display:flex;align-items:center;justify-content:center;gap:7px;
+    padding:8px 5% 9px;border-top:1px solid rgba(255,255,255,0.08);
+    color:rgba(255,255,255,0.74);font-size:13px;letter-spacing:.5px;
+    text-decoration:none;transition:color .18s;}
+  .leadbar-hint:hover{color:#fff;}
+  .leadbar-hint span{display:inline-block;animation:shbounce 1.5s ease-in-out infinite;font-size:15px;}
+  body.scrolled-down .leadbar-hint{display:none;}
   /* Desktop: leadbar always single row */
   @media (min-width:761px){
     .leadbar{position:relative;overflow:visible;}
@@ -368,6 +371,7 @@ fbq('track', 'ViewContent', {content_name: 'Home Landing Page'});
       <div class="lb-msg" id="lb-error">Please check your info and try again.</div>
     </form>
   </div>
+  <a href="#sold" class="leadbar-hint">Scroll down to see more <span aria-hidden="true">↓</span></a>
 </div>
 </div><!-- /topstack -->
 
@@ -382,7 +386,7 @@ fbq('track', 'ViewContent', {content_name: 'Home Landing Page'});
       <a href="tel:+17754298704" class="call-link">or call me directly: <span>(775) 429-8704</span></a>
     </div>
     <p class="hero-trust">Licensed REALTOR® · Lic. S.0192497 · The Roland Team / LPT Realty · Equal Housing Opportunity</p>
-    <a href="#sold" class="scroll-hint">Scroll down for more information <span aria-hidden="true">↓</span></a>
+
   </div>
 </header>
 
