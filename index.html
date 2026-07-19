@@ -355,24 +355,28 @@ fbq('track', 'ViewContent', {content_name: 'Home Landing Page'});
 <div class="leadbar">
   <div class="leadbar-in">
     <div class="leadbar-label">Get the <em>Free Kit</em></div>
-    <form id="lb-form" method="POST" action="https://febdbab1.sibforms.com/serve/MUIFABY1G59wC2Kr51GqP1YnzNCJ-U9exyBPbR85aTHu_wOhaRdYbV9jXQml0IdCwWvXHqjw9xYDZZttxuaqulPKPFZAv8KqkTz4YxnFXjb4JjUYixr9tkiRnj2gCj7H20hBobpUgdTk0iXWYKqrca4E1MAeMijGevCJnytazhLQqnX_KS_SQCyvH5VVV6PVaufc-KNPr8Q48oMd-w==" novalidate>
+    <form id="lb-form" method="POST" action="https://febdbab1.sibforms.com/serve/MUIFABY1G59wC2Kr51GqP1YnzNCJ-U9exyBPbR85aTHu_wOhaRdYbV9jXQml0IdCwWvXHqjw9xYDZZttxuaqulPKPFZAv8KqkTz4YxnFXjb4JjUYixr9tkiRnj2gCj7H20hBobpUgdTk0iXWYKqrca4E1MAeMijGevCJnytazhLQqnX_KS_SQCyvH5VVV6PVaufc-KNPr8Q48oMd-w==" novalidate target="lb-sink">
       <div class="lf"><input type="text" name="FIRSTNAME" placeholder="First name" autocomplete="given-name" maxlength="200" required></div>
       <div class="lf"><input type="text" name="LASTNAME" placeholder="Last name" autocomplete="family-name" maxlength="200" required></div>
       <div class="lf"><input type="email" name="EMAIL" placeholder="Email address" autocomplete="email" inputmode="email" required></div>
       <div class="lf lf-sms">
         <span class="lb-cc" aria-hidden="true">+1</span>
-        <input type="tel" id="lb-phone" name="SMS_DISPLAY" placeholder="Phone number" autocomplete="tel-national" inputmode="tel" maxlength="14" required>
+        <input type="tel" id="lb-phone" placeholder="Phone number" autocomplete="tel-national" inputmode="tel" maxlength="14" required>
       </div>
       <a href="#kit" class="lb-kitlink">What's in the kit?</a>
       <button class="lbtn" type="submit">Get the Free Kit →</button>
       <input type="text" name="email_address_check" value="" class="hp" tabindex="-1" autocomplete="off">
       <input type="hidden" name="locale" value="en">
+      <input type="hidden" name="html_type" value="simple">
+      <input type="hidden" name="SMS__COUNTRY_CODE" value="+1">
+      <input type="hidden" name="SMS" id="lb-sms-real" value="">
       <div class="lb-msg" id="lb-success">✓ Sent! Check your email for the kit.</div>
       <div class="lb-msg" id="lb-error">Please check your info and try again.</div>
     </form>
   </div>
   <a href="#sold" class="leadbar-hint">Scroll down to see more <span aria-hidden="true">↓</span></a>
 </div>
+<iframe name="lb-sink" id="lb-sink" title="form submission target" style="position:absolute;width:0;height:0;border:0;left:-9999px;" aria-hidden="true"></iframe>
 </div><!-- /topstack -->
 
 <!-- HERO -->
@@ -554,38 +558,7 @@ fbq('track', 'ViewContent', {content_name: 'Home Landing Page'});
 </div>
 
 <script>
-/* Carousel */
-var track=document.getElementById('track');
-var slides=track?track.children.length:0;
-var idx=0, dotsWrap=document.getElementById('dots'), timer=null;
-var reduce=window.matchMedia('(prefers-reduced-motion:reduce)').matches;
-for(var i=0;i<slides;i++){(function(i){var d=document.createElement('button');
-  d.className='dot'+(i===0?' on':'');d.setAttribute('aria-label','Go to slide '+(i+1));
-  d.onclick=function(){go(i);};dotsWrap.appendChild(d);})(i);}
-function render(){track.style.transform='translateX(-'+(idx*100)+'%)';
-  var ds=dotsWrap.children;for(var i=0;i<ds.length;i++)ds[i].className='dot'+(i===idx?' on':'');}
-function go(n){idx=(n+slides)%slides;render();restart();}
-function cShift(dir){go(idx+dir);}
-function restart(){if(reduce)return;clearInterval(timer);timer=setInterval(function(){go(idx+1);},5000);}
-if(slides>1){render();restart();
-  var mask=track.parentElement;
-  mask.addEventListener('mouseenter',function(){clearInterval(timer);});
-  mask.addEventListener('mouseleave',restart);
-  /* touch swipe */
-  var x0=null;
-  mask.addEventListener('touchstart',function(e){x0=e.touches[0].clientX;},{passive:true});
-  mask.addEventListener('touchend',function(e){if(x0===null)return;
-    var dx=e.changedTouches[0].clientX-x0;if(Math.abs(dx)>40)go(idx+(dx<0?1:-1));x0=null;});
-}
-/* Pixel: Contact on tel click */
-document.addEventListener('click',function(e){
-  var l=e.target.closest('a[href^="tel:"]');
-  if(l&&typeof fbq!=='undefined')fbq('track','Contact');
-});
-</script>
-
-<script>
-/* Hide nav on scroll down, reveal on scroll up — with hysteresis to prevent jitter */
+/* ── Hide nav on scroll down, reveal on scroll up (MOBILE ONLY) ── */
 (function(){
   var lastY=window.pageYOffset||0,ticking=false,collapsed=false,upAcc=0,downAcc=0,lockUntil=0;
   var DOWN_AT=240, DOWN_NEED=24, UP_NEED=48, TOP_AT=90, COOLDOWN=450;
@@ -622,51 +595,134 @@ document.addEventListener('click',function(e){
   },{passive:true});
 })();
 
-</script>
-
-
-<script>
-/* Leadbar: validate + POST directly to Brevo, show inline result */
+/* ── Leadbar: validate, then perform a REAL cross-origin form POST into a hidden
+   iframe (the same path Brevo's no-JS fallback uses). Then go to thank-you. ── */
 (function(){
   var f=document.getElementById('lb-form');
   if(!f)return;
-  var ok=document.getElementById('lb-success'), err=document.getElementById('lb-error');
+  var err=document.getElementById('lb-error');
+  var ok=document.getElementById('lb-success');
   var btn=f.querySelector('.lbtn');
   var ph=document.getElementById('lb-phone');
+  var smsReal=document.getElementById('lb-sms-real');
+  var sink=document.getElementById('lb-sink');
+  var submitting=false, started=false, done=false;
+
+  function finish(){
+    if(done)return; done=true;
+    window.location.href='thank-you.html';
+  }
+
   /* live-format US number as (702) 555-0100 */
   ph.addEventListener('input',function(){
-    var d=ph.value.replace(/\D/g,'').slice(0,10), o='';
+    var d=ph.value.replace(/\D/g,'').slice(0,10),o='';
     if(d.length>0)o='('+d.slice(0,3);
     if(d.length>=4)o+=') '+d.slice(3,6);
     if(d.length>=7)o+='-'+d.slice(6);
     ph.value=o;
   });
+
+  /* GA: fire once when someone starts filling the form */
+  f.addEventListener('focusin',function(){
+    if(started)return; started=true;
+    if(typeof gtag!=='undefined')gtag('event','form_start',{form:'home_sticky_bar'});
+  });
+
   f.addEventListener('submit',function(e){
-    e.preventDefault();
-    ok.style.display='none';err.style.display='none';
+    err.style.display='none'; ok.style.display='none';
     var fn=f.FIRSTNAME.value.trim(), ln=f.LASTNAME.value.trim(), em=f.EMAIL.value.trim();
     var d=ph.value.replace(/\D/g,'');
     if(!fn||!ln||!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(em)||d.length!==10){
-      err.textContent='Please fill every field (10-digit phone).';err.style.display='block';return;
+      e.preventDefault();
+      err.textContent='Please fill every field (10-digit phone).';
+      err.style.display='block';
+      return;
     }
-    var fd=new FormData();
-    fd.append('FIRSTNAME',fn);fd.append('LASTNAME',ln);fd.append('EMAIL',em);
-    fd.append('SMS__COUNTRY_CODE','+1');fd.append('SMS',d);
-    fd.append('email_address_check','');fd.append('locale','en');
-    btn.disabled=true;btn.textContent='Sending…';
-    fetch(f.action,{method:'POST',body:fd,mode:'no-cors'}).then(function(){
-      ok.style.display='block';
-      f.querySelectorAll('.lf, .leadbar-label').forEach(function(el){});
-      f.FIRSTNAME.value='';f.LASTNAME.value='';f.EMAIL.value='';ph.value='';
-      btn.textContent='Sent ✓';
-      if(typeof fbq!=='undefined')fbq('track','Lead',{content_name:'Home Sticky Kit Form',value:485,currency:'USD'});
-      if(typeof gtag!=='undefined')gtag('event','generate_lead',{form:'home_sticky_bar'});
-      setTimeout(function(){btn.disabled=false;btn.textContent='Get the Free Kit →';},4000);
-    }).catch(function(){
-      err.textContent='Network hiccup — please try again.';err.style.display='block';
-      btn.disabled=false;btn.textContent='Get the Free Kit →';
-    });
+    /* hand Brevo raw digits; let the browser POST for real into the iframe */
+    smsReal.value=d;
+    submitting=true;
+    btn.disabled=true; btn.textContent='Sending…';
+    if(typeof fbq!=='undefined')fbq('track','Lead',{content_name:'Home Sticky Kit Form',value:485,currency:'USD'});
+    setTimeout(function(){ if(submitting) finish(); },3500);
   });
+
+  /* Brevo's response lands in the hidden iframe -> proceed */
+  sink.addEventListener('load',function(){
+    if(!submitting)return;   /* ignore the initial blank load */
+    submitting=false;
+    finish();
+  });
+})();
+
+/* ── Carousel ── */
+(function(){
+  var track=document.getElementById('track');
+  if(!track)return;
+  var slides=track.children.length;
+  var idx=0, dotsWrap=document.getElementById('dots'), timer=null;
+  var reduce=window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+  for(var i=0;i<slides;i++){(function(i){
+    var d=document.createElement('button');
+    d.className='dot'+(i===0?' on':'');
+    d.setAttribute('aria-label','Go to slide '+(i+1));
+    d.onclick=function(){go(i);};
+    dotsWrap.appendChild(d);
+  })(i);}
+  function render(){
+    track.style.transform='translateX(-'+(idx*100)+'%)';
+    var ds=dotsWrap.children;
+    for(var i=0;i<ds.length;i++)ds[i].className='dot'+(i===idx?' on':'');
+  }
+  function go(n){idx=(n+slides)%slides;render();restart();}
+  window.cShift=function(dir){go(idx+dir);};
+  function restart(){if(reduce)return;clearInterval(timer);timer=setInterval(function(){go(idx+1);},5000);}
+  if(slides>1){
+    render();restart();
+    var mask=track.parentElement;
+    mask.addEventListener('mouseenter',function(){clearInterval(timer);});
+    mask.addEventListener('mouseleave',restart);
+    var x0=null;
+    mask.addEventListener('touchstart',function(e){x0=e.touches[0].clientX;},{passive:true});
+    mask.addEventListener('touchend',function(e){
+      if(x0===null)return;
+      var dx=e.changedTouches[0].clientX-x0;
+      if(Math.abs(dx)>40)go(idx+(dx<0?1:-1));
+      x0=null;
+    });
+  }
+})();
+
+/* ── Event tracking: phone, kit links, CTAs, scroll depth ── */
+document.addEventListener('click',function(e){
+  var tel=e.target.closest('a[href^="tel:"]');
+  if(tel){
+    if(typeof fbq!=='undefined')fbq('track','Contact');
+    if(typeof gtag!=='undefined')gtag('event','phone_click',{location:tel.closest('.leadbar')?'leadbar':(tel.closest('.callbar')?'mobile_bar':'page')});
+    return;
+  }
+  var kit=e.target.closest('a[href="#kit"], .lb-kitlink');
+  if(kit&&typeof gtag!=='undefined'){gtag('event','kit_info_click',{});return;}
+  var hint=e.target.closest('.leadbar-hint');
+  if(hint&&typeof gtag!=='undefined'){gtag('event','scroll_hint_click',{});return;}
+  var kitpage=e.target.closest('a[href="unfairadvantagekit.html"]');
+  if(kitpage&&typeof gtag!=='undefined')gtag('event','kit_page_click',{});
+});
+
+/* ── Scroll depth: 25 / 50 / 75 / 100 ── */
+(function(){
+  var hits={},ticking=false;
+  function check(){
+    var h=document.documentElement;
+    var denom=(h.scrollHeight||document.body.scrollHeight)-h.clientHeight;
+    if(denom<=0){ticking=false;return;}
+    var pct=(h.scrollTop||document.body.scrollTop)/denom*100;
+    [25,50,75,100].forEach(function(m){
+      if(pct>=m&&!hits[m]){hits[m]=1;
+        if(typeof gtag!=='undefined')gtag('event','scroll_depth',{percent:m});}
+    });
+    ticking=false;
+  }
+  window.addEventListener('scroll',function(){if(!ticking){requestAnimationFrame(check);ticking=true;}},{passive:true});
 })();
 </script>
 </body>
