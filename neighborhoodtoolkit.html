@@ -16,18 +16,18 @@
 <title>Neighborhood Research Toolkit</title>
   <link rel="icon" type="image/png" href="favicon.png">
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700&family=Jost:wght@300;400;500;600&display=swap');
 
   :root {
-    --navy: #1B2A4A;
-    --navy-light: #243560;
-    --gold: #C9A84C;
-    --gold-light: #E8C97A;
+    --navy: #2B2B2B;
+    --navy-light: #3A3A3A;
+    --gold: #1B7C4B;
+    --gold-light: #25A05F;
     --white: #FFFFFF;
-    --off-white: #F7F4EF;
+    --off-white: #F6F5F2;
     --gray: #888888;
-    --light-gray: #EEEEEE;
-    --green: #2D6A4F;
+    --light-gray: #E4E2DD;
+    --green: #14603A;
     --teal: #1A6B72;
     --red: #8B2020;
   }
@@ -35,7 +35,7 @@
   * { box-sizing: border-box; margin: 0; padding: 0; }
 
   body {
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'Jost', sans-serif;
     background: var(--navy);
     min-height: 100vh;
     display: flex;
@@ -91,7 +91,7 @@
     flex-shrink: 0;
   }
   .agent-name {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Cormorant Garamond', serif;
     color: var(--white);
     font-size: 16px;
     font-weight: 700;
@@ -124,9 +124,9 @@
     z-index: 1;
   }
   .page-title {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Cormorant Garamond', serif;
     font-size: 28px;
-    font-weight: 900;
+    font-weight: 700;
     color: var(--white);
     line-height: 1.2;
     margin-bottom: 8px;
@@ -167,7 +167,7 @@
     border-radius: 12px;
     padding: 15px 16px;
     font-size: 16px;
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'Jost', sans-serif;
     color: var(--navy);
     outline: none;
     transition: border 0.2s;
@@ -198,7 +198,7 @@
     padding: 18px;
     font-size: 16px;
     font-weight: 600;
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'Jost', sans-serif;
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -358,9 +358,9 @@
     text-align: center;
   }
   .stat-pill-num {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Cormorant Garamond', serif;
     font-size: 20px;
-    font-weight: 900;
+    font-weight: 700;
     color: var(--navy);
     line-height: 1.1;
   }
@@ -386,7 +386,7 @@
     font-weight: 600;
     color: var(--navy);
     text-decoration: none;
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'Jost', sans-serif;
     margin-top: 10px;
     transition: all 0.2s;
     cursor: pointer;
@@ -413,8 +413,8 @@
     align-items: center;
     justify-content: center;
     font-size: 15px;
-    font-weight: 900;
-    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-family: 'Cormorant Garamond', serif;
     flex-shrink: 0;
   }
   .rating-high  { background: rgba(45,106,79,0.15);  color: var(--green); }
@@ -450,7 +450,7 @@
     margin-bottom: 14px;
   }
   .address-prompt-title {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Cormorant Garamond', serif;
     font-size: 18px;
     font-weight: 700;
     color: var(--white);
@@ -473,7 +473,7 @@
     border-radius: 10px;
     padding: 13px 14px;
     font-size: 15px;
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'Jost', sans-serif;
     color: var(--white);
     outline: none;
   }
@@ -518,7 +518,7 @@
     flex-shrink: 0;
   }
   .misty-name {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Cormorant Garamond', serif;
     color: var(--white);
     font-size: 16px;
     font-weight: 700;
@@ -539,7 +539,7 @@
     padding: 14px;
     font-size: 15px;
     font-weight: 700;
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'Jost', sans-serif;
     text-decoration: none;
     margin-bottom: 10px;
     cursor: pointer;
@@ -564,7 +564,7 @@
     text-decoration: none;
     font-size: 13px;
     font-weight: 600;
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'Jost', sans-serif;
     border: 1px solid rgba(255,255,255,0.15);
     transition: background 0.2s;
   }
@@ -648,7 +648,7 @@
 <div class="screen" id="screenResults">
   <div class="page-header">
     <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;position:relative;z-index:1;">
-      <button onclick="goHome()" style="background:rgba(255,255,255,0.1);border:none;color:var(--gold);font-size:14px;font-weight:600;padding:8px 14px;border-radius:8px;cursor:pointer;font-family:'DM Sans',sans-serif;">← Back</button>
+      <button onclick="goHome()" style="background:rgba(255,255,255,0.1);border:none;color:var(--gold);font-size:14px;font-weight:600;padding:8px 14px;border-radius:8px;cursor:pointer;font-family:'Jost',sans-serif;">← Back</button>
       <div class="kit-badge" style="margin-bottom:0;">NEIGHBORHOOD REPORT</div>
     </div>
     <div class="page-title" style="font-size:24px;">
