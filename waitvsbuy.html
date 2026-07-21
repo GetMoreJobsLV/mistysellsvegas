@@ -90,7 +90,7 @@ fbq('track','ViewContent',{content_name:'Wait vs Buy Landing'});
   .verdict .big{margin-top:18px;display:inline-block;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.28);border-radius:10px;padding:13px 20px;font-size:15px;}
   .verdict .big b{font-size:26px;font-family:'Cormorant Garamond',serif;display:block;line-height:1.2;}
 
-  .grid{margin-top:22px;display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:16px;}
+  .grid{margin-top:22px;display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px;}
   .card{background:#fff;border:1px solid var(--line);border-radius:13px;padding:20px;}
   .card.now{border-color:var(--emerald);border-width:1.5px;}
   .card h4{font-family:'Jost',sans-serif;font-size:11.5px;letter-spacing:1.6px;text-transform:uppercase;color:var(--soft);font-weight:600;margin-bottom:13px;}
@@ -108,6 +108,25 @@ fbq('track','ViewContent',{content_name:'Wait vs Buy Landing'});
   .row.tot span:last-child{font-size:17px;}
   .card.w12 .row.tot span:last-child{color:#C2570A;}
   .card.w24 .row.tot span:last-child{color:#8B2020;}
+
+  /* teaser card — fills the 4th grid slot, points at the kit */
+  .card.tease{background:var(--emerald);border-color:var(--emerald);display:flex;flex-direction:column;justify-content:center;}
+  .card.tease h4{color:rgba(255,255,255,.7);margin-bottom:10px;}
+  .card.tease .tline{font-family:'Cormorant Garamond',serif;font-size:23px;font-weight:600;line-height:1.24;color:#fff;}
+  .card.tease .tnames{font-size:12.5px;font-weight:300;color:rgba(255,255,255,.72);line-height:1.65;margin-top:10px;}
+  .card.tease a{align-self:flex-start;margin-top:15px;font-size:12.5px;font-weight:600;letter-spacing:1.3px;text-transform:uppercase;color:#fff;text-decoration:none;border-bottom:1.5px solid rgba(255,255,255,.45);padding-bottom:3px;transition:border-color .18s;}
+  .card.tease a:hover{border-bottom-color:#fff;}
+
+  /* free consultation band */
+  .consult{margin-top:22px;background:var(--paper);border:1.5px solid var(--emerald);border-radius:14px;padding:26px 28px;display:flex;align-items:center;gap:28px;}
+  .consult .ctext{flex:1;}
+  .consult .ceyebrow{font-size:11px;letter-spacing:1.8px;text-transform:uppercase;color:var(--emerald);font-weight:600;margin-bottom:9px;}
+  .consult h3{font-size:clamp(21px,2.9vw,27px);line-height:1.22;}
+  .consult p{margin-top:9px;font-size:15px;color:var(--soft);line-height:1.62;max-width:54ch;}
+  .consult .cright{text-align:center;}
+  .consult .cbtn{display:block;white-space:nowrap;font-family:'Jost',sans-serif;font-size:16.5px;font-weight:600;letter-spacing:.4px;color:#fff;background:var(--emerald);border-radius:9px;padding:16px 26px;text-decoration:none;transition:background .2s,transform .15s;}
+  .consult .cbtn:hover{background:var(--emerald-d);transform:translateY(-1px);}
+  .consult .csub{margin-top:9px;font-size:12.5px;color:var(--soft-l);}
 
   /* cost-of-waiting chart */
   .chart{margin-top:22px;background:#fff;border:1px solid var(--line);border-radius:13px;padding:24px 22px 18px;}
@@ -167,6 +186,8 @@ fbq('track','ViewContent',{content_name:'Wait vs Buy Landing'});
     .calc{padding:26px 20px;}
     .more{padding:30px 22px;border-radius:14px;}
     .kitpanel{padding:20px 16px 22px;}
+    .consult{flex-direction:column;align-items:stretch;gap:18px;padding:24px 20px;}
+    .consult .cbtn{padding:17px 20px;}
     .kitlist li{flex-wrap:wrap;}
     .kitlist .tag{width:100%;padding-left:26px;margin-top:5px;align-self:flex-start;}
     .hero{padding:40px 0 34px;}
@@ -283,6 +304,12 @@ fbq('track','ViewContent',{content_name:'Wait vs Buy Landing'});
           <div class="row"><span>Higher payment</span><span class="up" id="mi24"></span></div>
           <div class="row tot"><span>Cost of waiting</span><span class="up" id="t24"></span></div>
         </div>
+        <div class="card tease">
+          <h4>That was 1 of 5</h4>
+          <div class="tline">The other four tools are waiting just below.</div>
+          <div class="tnames">Ready Buyer Blueprint · Neighborhood Toolkit · Home Scorecard System · Complete Buyer's Guide</div>
+          <a href="#more">See what else you get ↓</a>
+        </div>
       </div>
       <div class="chart">
         <h4>What waiting adds up to</h4>
@@ -292,6 +319,18 @@ fbq('track','ViewContent',{content_name:'Wait vs Buy Landing'});
 
       <div class="disc">
         These calculations are estimates based on the numbers you entered. <strong>Past home price appreciation is not a guarantee, prediction, or indication of future performance.</strong> Real estate markets fluctuate, and appreciation can run higher or lower than historical averages depending on economic conditions, interest rates, and local inventory. Monthly figures cover principal and interest only — property taxes, insurance, HOA dues, and mortgage insurance will raise your actual payment. Mortgage rate estimates vary based on credit, loan type, and lender. This tool is for educational purposes only and does not constitute financial, legal, or investment advice. Always consult a licensed lender and real estate professional before making any purchase decision.
+      </div>
+
+      <div class="consult">
+        <div class="ctext">
+          <p class="ceyebrow">Free consultation · Available today</p>
+          <h3>Want someone to look at these numbers with you?</h3>
+          <p>A short call with Misty — what your rent could be doing instead, what price range actually fits your situation, and whether your timing makes sense. No cost, no obligation, and nothing to decide on the call.</p>
+        </div>
+        <div class="cright">
+          <a href="tel:+17754298704" class="cbtn">Call (775) 429-8704</a>
+          <p class="csub">Or text the same number</p>
+        </div>
       </div>
 
       <div class="more" id="more">
@@ -508,6 +547,15 @@ fbq('track','ViewContent',{content_name:'Wait vs Buy Landing'});
     sending=false;finish();
   });
 })();
+
+/* kit teaser click tracking */
+document.addEventListener('click',function(e){
+  var t=e.target.closest('a[href="#more"]');
+  if(t){
+    if(typeof gtag!=='undefined')gtag('event','kit_teaser_click',{page:'wait_vs_buy'});
+    if(typeof fbq!=='undefined')fbq('trackCustom','KitTeaserClick');
+  }
+});
 
 /* phone click tracking */
 document.addEventListener('click',function(e){
