@@ -127,13 +127,20 @@ fbq('track','ViewContent',{content_name:'Wait vs Buy Landing'});
   .more .eyebrow{color:var(--emerald-br);}
   .more h2{font-size:clamp(26px,3.6vw,38px);color:#fff;max-width:22ch;}
   .more>p{margin-top:12px;color:rgba(255,255,255,.75);max-width:58ch;}
-  .tools{margin:26px 0 30px;display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px;}
-  .tool{background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.13);border-radius:11px;padding:16px 17px;}
-  .tool.have{border-color:var(--emerald);background:rgba(27,124,75,.16);}
-  .tool .tnum{font-family:'Cormorant Garamond',serif;font-size:20px;color:var(--emerald-br);font-weight:600;}
-  .tool h4{font-family:'Cormorant Garamond',serif;font-size:19px;font-weight:600;color:#fff;margin:2px 0 5px;}
-  .tool p{font-size:13.5px;color:rgba(255,255,255,.62);line-height:1.55;}
-  .tool .got{display:inline-block;margin-top:8px;font-size:10.5px;letter-spacing:1.4px;text-transform:uppercase;color:var(--emerald-br);font-weight:600;}
+  /* kit manifest — one list, bound to the form so the form reads as the door */
+  .kitpanel{margin-top:26px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.15);border-radius:14px;padding:24px 22px 26px;}
+  .kittitle{font-size:11px;letter-spacing:1.8px;text-transform:uppercase;color:var(--emerald-br);font-weight:600;margin-bottom:15px;}
+  .kitlist{list-style:none;margin:0;}
+  .kitlist li{display:flex;align-items:flex-start;gap:13px;padding:11px 0;border-top:1px solid rgba(255,255,255,.09);}
+  .kitlist li:first-child{border-top:0;padding-top:0;}
+  .kitlist li.have{opacity:.68;}
+  .kitlist .kn{font-family:'Cormorant Garamond',serif;font-size:19px;font-weight:600;color:var(--emerald-br);line-height:1.35;min-width:13px;}
+  .kitlist li>div{flex:1;}
+  .kitlist b{display:block;font-family:'Cormorant Garamond',serif;font-size:19px;font-weight:600;color:#fff;line-height:1.3;}
+  .kitlist i{display:block;font-style:normal;font-size:13.5px;color:rgba(255,255,255,.62);line-height:1.5;margin-top:2px;}
+  .kitlist .tag{align-self:center;font-size:10px;letter-spacing:1.3px;text-transform:uppercase;color:var(--emerald-br);font-weight:600;white-space:nowrap;}
+  .kitnote{margin-top:16px;padding-top:15px;border-top:1px solid rgba(255,255,255,.09);font-size:14.5px;color:rgba(255,255,255,.82);}
+  .kitnote b{color:#fff;font-weight:600;}
 
   form{margin-top:4px;}
   .frow{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
@@ -159,6 +166,9 @@ fbq('track','ViewContent',{content_name:'Wait vs Buy Landing'});
     .frow{grid-template-columns:1fr;gap:0;}
     .calc{padding:26px 20px;}
     .more{padding:30px 22px;border-radius:14px;}
+    .kitpanel{padding:20px 16px 22px;}
+    .kitlist li{flex-wrap:wrap;}
+    .kitlist .tag{width:100%;padding-left:26px;margin-top:5px;align-self:flex-start;}
     .hero{padding:40px 0 34px;}
     body{padding-bottom:60px;}
     .callbar{display:flex;position:fixed;bottom:0;left:0;right:0;z-index:70;background:var(--emerald);}
@@ -286,32 +296,35 @@ fbq('track','ViewContent',{content_name:'Wait vs Buy Landing'});
 
       <div class="more" id="more">
         <p class="eyebrow">That was 1 of 5</p>
-        <h2>The other four tools answer what comes next.</h2>
-        <p>The calculator told you whether the math works. These tell you whether <em>you</em> are ready, where to look, and how to judge what you walk into. All five come free — enter your info and they're in your inbox in about a minute.</p>
+        <h2>You've answered one question. These four answer the rest.</h2>
+        <p>The math was the first question, not the only one. The rest of the kit covers where you actually stand with a lender, where your money goes furthest in this valley, and how to judge the fifth house you walk into after the first four blur together.</p>
 
-        <div class="tools">
-          <div class="tool have">
-            <div class="tnum">1</div><h4>Wait vs. Buy Calculator</h4>
-            <p>The one you just used — plus a saved copy you can revisit as your numbers change.</p>
-            <span class="got">✓ You just used this</span>
-          </div>
-          <div class="tool">
-            <div class="tnum">2</div><h4>Ready Buyer Blueprint</h4>
-            <p>Where you actually stand financially, and what needs to change before a lender says yes.</p>
-          </div>
-          <div class="tool">
-            <div class="tnum">3</div><h4>Neighborhood Toolkit</h4>
-            <p>How Las Vegas areas really differ on commute, price, and what your money buys.</p>
-          </div>
-          <div class="tool">
-            <div class="tnum">4</div><h4>Home Scorecard System</h4>
-            <p>Score every home you tour on the same scale, so the fifth one doesn't blur into the first.</p>
-          </div>
-          <div class="tool">
-            <div class="tnum">5</div><h4>The Complete Buyer's Guide</h4>
-            <p>Every step from pre-approval to keys, including what happens at each stage and when.</p>
-          </div>
-        </div>
+        <div class="kitpanel">
+          <p class="kittitle">What lands in your inbox</p>
+          <ul class="kitlist">
+            <li class="have">
+              <span class="kn">1</span>
+              <div><b>Wait vs. Buy Calculator</b><i>A saved copy you can run again as your numbers change</i></div>
+              <span class="tag">✓ You just used this</span>
+            </li>
+            <li>
+              <span class="kn">2</span>
+              <div><b>Ready Buyer Blueprint</b><i>Where you actually stand, and what a lender needs to see</i></div>
+            </li>
+            <li>
+              <span class="kn">3</span>
+              <div><b>Neighborhood Toolkit</b><i>How Las Vegas areas really differ on price and commute</i></div>
+            </li>
+            <li>
+              <span class="kn">4</span>
+              <div><b>Home Scorecard System</b><i>Score every home the same way, so they stop blurring together</i></div>
+            </li>
+            <li>
+              <span class="kn">5</span>
+              <div><b>The Complete Buyer's Guide</b><i>Every step from pre-approval to keys, and when each one happens</i></div>
+            </li>
+          </ul>
+          <p class="kitnote"><b>Four of the five are still waiting.</b> Enter your info below and all five arrive in one email, about a minute from now.</p>
 
         <form id="kitForm" method="POST" action="https://febdbab1.sibforms.com/serve/MUIFABY1G59wC2Kr51GqP1YnzNCJ-U9exyBPbR85aTHu_wOhaRdYbV9jXQml0IdCwWvXHqjw9xYDZZttxuaqulPKPFZAv8KqkTz4YxnFXjb4JjUYixr9tkiRnj2gCj7H20hBobpUgdTk0iXWYKqrca4E1MAeMijGevCJnytazhLQqnX_KS_SQCyvH5VVV6PVaufc-KNPr8Q48oMd-w==" novalidate target="kit-sink">
           <div class="frow">
@@ -330,6 +343,7 @@ fbq('track','ViewContent',{content_name:'Wait vs Buy Landing'});
           <p class="fineprint">Free, no obligation. I'll follow up personally — reply "stop" any time and I'll leave you alone. Equal Housing Opportunity.</p>
         </form>
         <iframe name="kit-sink" id="kit-sink" title="form submission target" style="position:absolute;width:0;height:0;border:0;left:-9999px;" aria-hidden="true"></iframe>
+        </div>
       </div>
     </div>
   </div>
