@@ -510,7 +510,7 @@ fbq('track','ViewContent',{content_name:'Wait vs Buy Landing'});
   var sink=document.getElementById('kit-sink');
   var sending=false, started=false, done=false;
 
-  function finish(){if(done)return;done=true;window.location.href='thank-you.html';}
+  function finish(){if(done)return;done=true;window.location.href='thank-you.html?src=wait_vs_buy';}
 
   ph.addEventListener('input',function(){
     var d=ph.value.replace(/\D/g,'').slice(0,10),o='';

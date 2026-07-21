@@ -8,7 +8,9 @@
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
   gtag('config', 'G-SF90BT5CYK');
-  gtag('event','generate_lead',{currency:'USD',value:485,form:'home_sticky_bar'});
+  var leadSrc=(new URLSearchParams(window.location.search).get('src')||'unknown')
+                .replace(/[^a-zA-Z0-9_]/g,'').slice(0,40) || 'unknown';
+  gtag('event','generate_lead',{currency:'USD',value:485,form:leadSrc});
 </script>
 
 <!-- Google Ads conversion (AW-18297726831 / Sign-up: WqJnCNv1iNMcEO_OhJVE) -->

@@ -1329,7 +1329,7 @@ document.addEventListener('DOMContentLoaded', () => {
   var err=document.getElementById('lpErr'),btn=document.getElementById('lpBtn');
   var ph=document.getElementById('lpPhone'),sms=document.getElementById('lpSms'),sink=document.getElementById('lp-sink');
   var sending=false,started=false,done=false;
-  function finish(){if(done)return;done=true;window.location.href='thank-you.html';}
+  function finish(){if(done)return;done=true;window.location.href='thank-you.html?src=neighborhood_toolkit';}
   ph.addEventListener('input',function(){var d=ph.value.replace(/\D/g,'').slice(0,10),o='';
     if(d.length>0)o='('+d.slice(0,3);if(d.length>=4)o+=') '+d.slice(3,6);if(d.length>=7)o+='-'+d.slice(6);ph.value=o;});
   f.addEventListener('focusin',function(){if(started)return;started=true;
