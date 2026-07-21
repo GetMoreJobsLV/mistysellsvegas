@@ -102,7 +102,25 @@ fbq('track','ViewContent',{content_name:'Wait vs Buy Landing'});
   .row .up{color:var(--alert);font-weight:600;}
   .row.tot{border-top:1.5px solid var(--ink);margin-top:5px;padding-top:10px;}
   .row.tot span{font-weight:600;font-size:15.5px;}
-  .disc{margin-top:18px;font-size:12.5px;color:var(--soft-l);line-height:1.6;max-width:70ch;}
+  .card.w12{border-top:3px solid #C2570A;}
+  .card.w24{border-top:3px solid #8B2020;}
+  .card.w12 h4{color:#C2570A;} .card.w24 h4{color:#8B2020;}
+  .row.tot span:last-child{font-size:17px;}
+  .card.w12 .row.tot span:last-child{color:#C2570A;}
+  .card.w24 .row.tot span:last-child{color:#8B2020;}
+
+  /* cost-of-waiting chart */
+  .chart{margin-top:22px;background:#fff;border:1px solid var(--line);border-radius:13px;padding:24px 22px 18px;}
+  .chart h4{font-family:'Jost',sans-serif;font-size:11.5px;letter-spacing:1.6px;text-transform:uppercase;color:var(--soft);font-weight:600;margin-bottom:20px;}
+  .bars{display:flex;align-items:flex-end;gap:14px;height:210px;padding-top:26px;}
+  .bcol{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%;}
+  .bamt{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:600;margin-bottom:7px;white-space:nowrap;}
+  .bfill{width:100%;border-radius:7px 7px 0 0;min-height:5px;transition:height .75s cubic-bezier(.2,.8,.3,1);}
+  .blab{margin-top:9px;font-size:12.5px;color:var(--soft);text-align:center;line-height:1.35;}
+  .bbase{margin-top:2px;border-top:1px solid var(--line);padding-top:12px;font-size:12.5px;color:var(--soft-l);text-align:center;}
+
+  .disc{margin-top:20px;background:rgba(139,32,32,.05);border:1px solid rgba(139,32,32,.18);border-radius:11px;padding:16px 18px;font-size:12.5px;color:var(--soft);line-height:1.65;}
+  .disc strong{color:var(--ink);font-weight:600;}
 
   /* the reveal — more tools behind the form */
   .more{margin-top:44px;background:var(--black);color:#fff;border-radius:18px;padding:38px 32px;}
@@ -239,7 +257,7 @@ fbq('track','ViewContent',{content_name:'Wait vs Buy Landing'});
           <div class="row"><span>Est. monthly payment</span><span id="m0"></span></div>
           <div class="row"><span>Your rent today</span><span id="r0"></span></div>
         </div>
-        <div class="card">
+        <div class="card w12">
           <h4>Wait 12 months</h4>
           <div class="row"><span>Home price then</span><span id="p12"></span></div>
           <div class="row"><span>Price increase</span><span class="up" id="pi12"></span></div>
@@ -247,7 +265,7 @@ fbq('track','ViewContent',{content_name:'Wait vs Buy Landing'});
           <div class="row"><span>Higher payment</span><span class="up" id="mi12"></span></div>
           <div class="row tot"><span>Cost of waiting</span><span class="up" id="t12"></span></div>
         </div>
-        <div class="card">
+        <div class="card w24">
           <h4>Wait 24 months</h4>
           <div class="row"><span>Home price then</span><span id="p24"></span></div>
           <div class="row"><span>Price increase</span><span class="up" id="pi24"></span></div>
@@ -256,7 +274,15 @@ fbq('track','ViewContent',{content_name:'Wait vs Buy Landing'});
           <div class="row tot"><span>Cost of waiting</span><span class="up" id="t24"></span></div>
         </div>
       </div>
-      <p class="disc">Estimates only, for planning purposes. Monthly figures cover principal and interest and do not include property taxes, insurance, HOA dues, or mortgage insurance, which will raise your real payment. Appreciation is whatever rate you entered and is not a forecast. Nothing here is a loan approval, a guarantee, or financial advice. Talk to a licensed lender for numbers specific to you.</p>
+      <div class="chart">
+        <h4>What waiting adds up to</h4>
+        <div class="bars" id="bars"></div>
+        <div class="bbase">Buying now is the baseline — these are the added costs of waiting instead.</div>
+      </div>
+
+      <div class="disc">
+        These calculations are estimates based on the numbers you entered. <strong>Past home price appreciation is not a guarantee, prediction, or indication of future performance.</strong> Real estate markets fluctuate, and appreciation can run higher or lower than historical averages depending on economic conditions, interest rates, and local inventory. Monthly figures cover principal and interest only — property taxes, insurance, HOA dues, and mortgage insurance will raise your actual payment. Mortgage rate estimates vary based on credit, loan type, and lender. This tool is for educational purposes only and does not constitute financial, legal, or investment advice. Always consult a licensed lender and real estate professional before making any purchase decision.
+      </div>
 
       <div class="more" id="more">
         <p class="eyebrow">That was 1 of 5</p>
@@ -351,7 +377,7 @@ fbq('track','ViewContent',{content_name:'Wait vs Buy Landing'});
       var fm=pmt(fp-fd,r);
       return {fp:fp,inc:fp-price,rent:rent*months,mInc:fm-basePay,total:(fp-price)+(rent*months)};
     }
-    var s12=scen(12), s24=scen(24);
+    var s6=scen(6), s12=scen(12), s24=scen(24);
 
     document.getElementById('p0').textContent=fmt(price);
     document.getElementById('d0').textContent=fmt(down);
@@ -388,6 +414,27 @@ fbq('track','ViewContent',{content_name:'Wait vs Buy Landing'});
       x.textContent='Based on the numbers you entered, here\u2019s what another twelve months of renting adds up to once you count both the rent you pay and the price increase you\u2019d be buying into. It doesn\u2019t mean buy today — it means know what waiting costs before you choose it.';
       b.innerHTML='Estimated cost of waiting 12 months<b>'+fmt(s12.total)+'</b>';
     }
+
+    /* escalating bar chart — warm colors signal rising cost */
+    var series=[
+      {lab:'Wait<br>6 months',  val:s6.total,  col:'#B8860B'},
+      {lab:'Wait<br>12 months', val:s12.total, col:'#C2570A'},
+      {lab:'Wait<br>24 months', val:s24.total, col:'#8B2020'}
+    ];
+    var peak=Math.max(s6.total,s12.total,s24.total,1);
+    var bars=document.getElementById('bars');
+    bars.innerHTML='';
+    series.forEach(function(it,i){
+      var col=document.createElement('div'); col.className='bcol';
+      var amt=document.createElement('div'); amt.className='bamt';
+      amt.textContent=fmt(it.val); amt.style.color=it.col;
+      var fill=document.createElement('div'); fill.className='bfill';
+      fill.style.background=it.col; fill.style.height='0%';
+      var lab=document.createElement('div'); lab.className='blab'; lab.innerHTML=it.lab;
+      col.appendChild(amt); col.appendChild(fill); col.appendChild(lab);
+      bars.appendChild(col);
+      (function(f,pct){setTimeout(function(){f.style.height=pct+'%';},60+i*110);})(fill,Math.max((it.val/peak)*100,4));
+    });
 
     var res=document.getElementById('results');
     res.classList.add('on');
