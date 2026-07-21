@@ -285,18 +285,6 @@ fbq('track','ViewContent',{content_name:'Wait vs Buy Landing'});
       </div>
 
       <div class="more" id="more">
-        <div id="haveKit" style="display:none;">
-          <p class="eyebrow">You already have these</p>
-          <h2 style="margin-bottom:18px;">Your other four tools.</h2>
-          <div class="tools">
-            <a class="tool" href="readybuyerblueprint.html" style="text-decoration:none;display:block;"><div class="tnum">2</div><h4>Ready Buyer Blueprint</h4><p>Where you stand financially, and what needs to change before a lender says yes.</p></a>
-            <a class="tool" href="neighborhoodtoolkit.html" style="text-decoration:none;display:block;"><div class="tnum">3</div><h4>Neighborhood Toolkit</h4><p>How Las Vegas areas really differ on commute, price, and what your money buys.</p></a>
-            <a class="tool" href="homescorecardsystem.html" style="text-decoration:none;display:block;"><div class="tnum">4</div><h4>Home Scorecard System</h4><p>Score every home on the same scale, so the fifth doesn't blur into the first.</p></a>
-            <a class="tool" href="buyersguide.html" style="text-decoration:none;display:block;"><div class="tnum">5</div><h4>The Complete Buyer's Guide</h4><p>Every step from pre-approval to keys, and when each one happens.</p></a>
-          </div>
-          <p style="color:rgba(255,255,255,.7);margin-top:6px;">Questions about your numbers? Call or text me directly at <a href="tel:+17754298704" style="color:#25A05F;">(775) 429-8704</a>.</p>
-        </div>
-        <div id="needKit">
         <p class="eyebrow">That was 1 of 5</p>
         <h2>The other four tools answer what comes next.</h2>
         <p>The calculator told you whether the math works. These tell you whether <em>you</em> are ready, where to look, and how to judge what you walk into. All five come free — enter your info and they're in your inbox in about a minute.</p>
@@ -341,7 +329,6 @@ fbq('track','ViewContent',{content_name:'Wait vs Buy Landing'});
           <div class="msg bad" id="formErr"></div>
           <p class="fineprint">Free, no obligation. I'll follow up personally — reply "stop" any time and I'll leave you alone. Equal Housing Opportunity.</p>
         </form>
-        </div>
         <iframe name="kit-sink" id="kit-sink" title="form submission target" style="position:absolute;width:0;height:0;border:0;left:-9999px;" aria-hidden="true"></iframe>
       </div>
     </div>
@@ -506,18 +493,6 @@ fbq('track','ViewContent',{content_name:'Wait vs Buy Landing'});
     if(!sending)return;
     sending=false;finish();
   });
-})();
-
-/* Returning kit holders (?kit=1 from Brevo emails) see their tool links,
-   not the signup form. Everyone else sees the form. */
-(function(){
-  var p=new URLSearchParams(window.location.search);
-  if(p.get('kit')==='1'||p.get('src')==='kit'){
-    var have=document.getElementById('haveKit'), need=document.getElementById('needKit');
-    if(have&&need){have.style.display='block';need.style.display='none';}
-    var cb=document.querySelector('.callbar a');
-    if(cb){cb.textContent='Back to My Kit';cb.setAttribute('href','unfairadvantagekit.html');}
-  }
 })();
 
 /* phone click tracking */
